@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'lavigne'
+require 'pry'
+require 'json'
+
+json2 = JSON.parse  File.read('test3.json')
+#Lavigne.save_features(json2, 'test3.avr')
+
+#in_file = File.open('test3.avr', 'rb')
+#dr = Lavigne.datafile_reader(in_file)
+
+#data = dr.to_a.first
+#file = File.open('test3.avr', 'rb')
+file = File.open('test3.avr', 'wb')
+writer = Lavigne.datafile_writer(file)
+# rubocop:disable Lint/Debugger
+binding.pry
+puts 'Obligatory line for pry.'
+# rubocop:enable Lint/Debugger
