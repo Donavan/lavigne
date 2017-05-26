@@ -3,34 +3,38 @@ require 'base64'
 require 'cucumber/formatter/backtrace_filter'
 require 'cucumber/formatter/io'
 require 'cucumber/formatter/hook_query_visitor'
+require 'cucumber/events'
 
 module Cucumber
   module Formatter
     # The formatter used for <tt>--format json</tt>
     class LavigneFormatter
-      include Io
 
       def initialize(config)
-        @io = ensure_io(config.out_stream)
+        config.on_event :before_test_case, &method(:on_before_test_case)
+        config.on_event :after_test_case, &method(:on_after_test_case)
+        config.on_event :before_test_step, &method(:on_before_test_step)
+        config.on_event :after_test_step, &method(:on_after_test_step)
+        config.on_event :finished_testing, &method(:on_finished_testing)
+        @io = File.open(config.out_stream, 'wb')
         @writer = ::Lavigne.datafile_writer(@io)
-
+        @feature_hash = nil
         at_exit do
           @writer.close unless @writer.writer.closed?
         end
-
-        config.on_event :test_case_starting, &method(:on_test_case_starting)
-        config.on_event :test_case_finished, &method(:on_test_case_finished)
-        config.on_event :test_step_starting, &method(:on_test_step_starting)
-        config.on_event :test_step_finished, &method(:on_test_step_finished)
-        config.on_event :test_run_finished, &method(:on_test_run_finished)
+        @feature_hashes = []
       end
 
-      def on_test_case_starting(event)
+      def on_before_test_case(event)
         test_case = event.test_case
         builder = Builder.new(test_case)
         unless same_feature_as_previous_test_case?(test_case.feature)
-          @writer << @feature_hash unless @feature_hash.nil?
+          unless @feature_hash.nil? || @feature_hash.empty?
+            #binding.pry
+            @writer << @feature_hash
+          end
           @feature_hash = builder.feature_hash
+          @feature_hashes << @feature_hash
         end
         @test_case_hash = builder.test_case_hash
         if builder.background?
@@ -43,7 +47,7 @@ module Cucumber
         @any_step_failed = false
       end
 
-      def on_test_step_starting(event)
+      def on_before_test_step(event)
         test_step = event.test_step
         return if internal_hook?(test_step)
         hook_query = HookQueryVisitor.new(test_step)
@@ -61,21 +65,20 @@ module Cucumber
         @step_hash = @step_or_hook_hash
       end
 
-      def on_test_step_finished(event)
-        test_step, result = *event.attributes
-        result = result.with_filtered_backtrace(Cucumber::Formatter::BacktraceFilter)
+      def on_after_test_step(event)
+        test_step = event.test_step
+        result = event.result.with_filtered_backtrace(Cucumber::Formatter::BacktraceFilter)
         return if internal_hook?(test_step)
         add_match_and_result(test_step, result)
         @any_step_failed = true if result.failed?
       end
 
-      def on_test_case_finished(event)
-        _test_case, result = *event.attributes
-        result = result.with_filtered_backtrace(Cucumber::Formatter::BacktraceFilter)
+      def on_after_test_case(event)
+        result = event.result.with_filtered_backtrace(Cucumber::Formatter::BacktraceFilter)
         add_failed_around_hook(result) if result.failed? && !@any_step_failed
       end
 
-      def on_test_run_finished(_event)
+      def on_finished_testing(event)
         @writer.close
       end
 
@@ -95,17 +98,17 @@ module Cucumber
             data = encode64(src)
           end
         end
-        test_step_embeddings << { mime_type: mime_type, data: data }
+        test_step_embeddings << { 'mime_type' => mime_type, 'data' => data }
       end
 
       private
 
       def same_feature_as_previous_test_case?(feature)
-        current_feature[:uri] == feature.file && current_feature[:line] == feature.location.line
+        current_feature['uri'] == feature.file && current_feature['line'] == feature.location.line
       end
 
       def first_step_after_background?(test_step)
-        test_step.source[1].name != @element_hash[:name]
+        test_step.source[1].name != @element_hash['name']
       end
 
       def internal_hook?(test_step)
@@ -117,11 +120,11 @@ module Cucumber
       end
 
       def feature_elements
-        @feature_hash[:elements] ||= []
+        @feature_hash['elements'] ||= []
       end
 
       def steps
-        @element_hash[:steps] ||= []
+        @element_hash['steps'] ||= []
       end
 
       def hooks_of_type(hook_query)
@@ -133,84 +136,84 @@ module Cucumber
           when :after_step
             return after_step_hooks
           else
-            fail 'Unknown hook type ' + hook_query.type.to_s
+            fail 'Unkown hook type ' + hook_query.type.to_s
         end
       end
 
       def before_hooks
-        @element_hash[:before] ||= []
+        @element_hash['before'] ||= []
       end
 
       def after_hooks
-        @element_hash[:after] ||= []
+        @element_hash['after'] ||= []
       end
 
       def around_hooks
-        @element_hash[:around] ||= []
+        @element_hash['around'] ||= []
       end
 
       def after_step_hooks
-        @step_hash[:after] ||= []
+        @step_hash['after'] ||= []
       end
 
       def test_step_output
-        @step_or_hook_hash[:output] ||= []
+        @step_or_hook_hash['output'] ||= []
       end
 
       def test_step_embeddings
-        @step_or_hook_hash[:embeddings] ||= []
+        @step_or_hook_hash['embeddings'] ||= []
       end
 
       def create_step_hash(step_source)
         step_hash = {
-            keyword: step_source.keyword,
-            name: step_source.name,
-            line: step_source.location.line
+            'keyword' => step_source.keyword,
+            'name' => step_source.name,
+            'line' => step_source.location.line
         }
-        step_hash[:comments] = Formatter.create_comments_array(step_source.comments) unless step_source.comments.empty?
-        step_hash[:doc_string] = create_doc_string_hash(step_source.multiline_arg) if step_source.multiline_arg.doc_string?
-        step_hash[:rows] = create_data_table_value(step_source.multiline_arg) if step_source.multiline_arg.data_table?
+        step_hash['comments'] = Formatter.create_comments_array(step_source.comments) unless step_source.comments.empty?
+        step_hash['doc_string'] = create_doc_string_hash(step_source.multiline_arg) if step_source.multiline_arg.doc_string?
+        step_hash['rows'] = create_data_table_value(step_source.multiline_arg) if step_source.multiline_arg.data_table?
         step_hash
       end
 
       def create_doc_string_hash(doc_string)
-        content_type = doc_string.content_type ? doc_string.content_type : ''
+        content_type = doc_string.content_type ? doc_string.content_type : ""
         {
-            value: doc_string.content,
-            content_type: content_type,
-            line: doc_string.location.line
+            'value' => doc_string.content,
+            'content_type' => content_type,
+            'line' => doc_string.location.line
         }
       end
 
       def create_data_table_value(data_table)
         data_table.raw.map do |row|
-          { cells: row }
+          { 'cells' => row }
         end
       end
 
       def add_match_and_result(test_step, result)
-        @step_or_hook_hash[:match] = create_match_hash(test_step, result)
-        @step_or_hook_hash[:result] = create_result_hash(result)
+        @step_or_hook_hash['match'] = create_match_hash(test_step, result)
+        @step_or_hook_hash['result'] = create_result_hash(result)
       end
 
       def add_failed_around_hook(result)
         @step_or_hook_hash = {}
         around_hooks << @step_or_hook_hash
-        @step_or_hook_hash[:match] = { location: 'unknown_hook_location:1' }
+        @step_or_hook_hash['match'] = { 'location' => "unknown_hook_location:1" }
 
-        @step_or_hook_hash[:result] = create_result_hash(result)
+        @step_or_hook_hash['result'] = create_result_hash(result)
       end
 
-      def create_match_hash(test_step, _result)
-        { location: test_step.action_location.to_s }
+      def create_match_hash(test_step, result)
+        { 'location' => test_step.action_location.to_s }
       end
 
       def create_result_hash(result)
         result_hash = {
-            status: result.to_sym
+            'status' => result.to_sym.to_s
         }
-        result_hash[:error_message] = create_error_message(result) if result.failed? || result.pending?
-        result.duration.tap { |duration| result_hash[:duration] = duration.nanoseconds }
+        result_hash['error_message'] = create_error_message(result) if result.failed? || result.pending?
+        result.duration.tap { |duration| result_hash['duration'] = duration.nanoseconds }
         result_hash
       end
 
@@ -222,7 +225,7 @@ module Cucumber
 
       def encode64(data)
         # strip newlines from the encoded data
-        Base64.encode64(data).delete("\n")
+        Base64.encode64(data).gsub(/\n/, '')
       end
 
       class Builder
@@ -240,67 +243,67 @@ module Cucumber
 
         def feature(feature)
           @feature_hash = {
-              uri: feature.file,
-              id: create_id(feature),
-              keyword: feature.keyword,
-              name: feature.name,
-              description: feature.description,
-              line: feature.location.line
+              'uri' => feature.file,
+              'id' => create_id(feature),
+              'keyword' => feature.keyword,
+              'name' => feature.name,
+              'description' => feature.description,
+              'line' => feature.location.line
           }
           unless feature.tags.empty?
-            @feature_hash[:tags] = create_tags_array(feature.tags)
-            @test_case_hash[:tags] = if @test_case_hash[:tags]
-                                       @feature_hash[:tags] + @test_case_hash[:tags]
-                                     else
-                                       @feature_hash[:tags]
-                                     end
+            @feature_hash['tags'] = create_tags_array(feature.tags)
+            if @test_case_hash['tags']
+              @test_case_hash['tags'] = @feature_hash['tags'] + @test_case_hash['tags']
+            else
+              @test_case_hash['tags'] = @feature_hash['tags']
+            end
           end
-          @feature_hash[:comments] = Formatter.create_comments_array(feature.comments) unless feature.comments.empty?
-          @test_case_hash[:id].insert(0, @feature_hash[:id] + ';')
+          @feature_hash['comments'] = Formatter.create_comments_array(feature.comments) unless feature.comments.empty?
+          @test_case_hash['id'].insert(0, @feature_hash['id'] + ';')
         end
 
         def background(background)
           @background_hash = {
-              keyword: background.keyword,
-              name: background.name,
-              description: background.description,
-              line: background.location.line,
-              type: 'background'
+              'keyword' => background.keyword,
+              'name' => background.name,
+              'description' => background.description,
+              'line' => background.location.line,
+              'type' => 'background'
           }
-          @background_hash[:comments] = Formatter.create_comments_array(background.comments) unless background.comments.empty?
+          @background_hash['comments'] = Formatter.create_comments_array(background.comments) unless background.comments.empty?
         end
 
         def scenario(scenario)
           @test_case_hash = {
-              id: create_id(scenario),
-              keyword: scenario.keyword,
-              name: scenario.name,
-              description: scenario.description,
-              line: scenario.location.line,
-              type: 'scenario'
+              'id' => create_id(scenario),
+              'keyword' => scenario.keyword,
+              'name' => scenario.name,
+              'description' => scenario.description,
+              'line' => scenario.location.line,
+              'type' => 'scenario'
           }
-          @test_case_hash[:tags] = create_tags_array(scenario.tags) unless scenario.tags.empty?
-          @test_case_hash[:comments] = Formatter.create_comments_array(scenario.comments) unless scenario.comments.empty?
+          @test_case_hash['tags'] = create_tags_array(scenario.tags) unless scenario.tags.empty?
+          @test_case_hash['comments'] = Formatter.create_comments_array(scenario.comments) unless scenario.comments.empty?
         end
 
         def scenario_outline(scenario)
           @test_case_hash = {
-              id: create_id(scenario) + ';' + @example_id,
-              keyword: scenario.keyword,
-              name: scenario.name,
-              description: scenario.description,
-              line: @row.location.line,
-              type: 'scenario'
+              'id' => create_id(scenario) + ';' + @example_id,
+              'keyword' => scenario.keyword,
+              'name' => scenario.name,
+              'description' => scenario.description,
+              'line' => @row.location.line,
+              'type' => 'scenario'
           }
           tags = []
           tags += create_tags_array(scenario.tags) unless scenario.tags.empty?
           tags += @examples_table_tags if @examples_table_tags
-          @test_case_hash[:tags] = tags unless tags.empty?
+          @test_case_hash['tags'] = tags unless tags.empty?
           comments = []
           comments += Formatter.create_comments_array(scenario.comments) unless scenario.comments.empty?
           comments += @examples_table_comments if @examples_table_comments
           comments += @row_comments if @row_comments
-          @test_case_hash[:comments] =  comments unless comments.empty?
+          @test_case_hash['comments'] = comments unless comments.empty?
         end
 
         def examples_table(examples_table)
@@ -320,12 +323,12 @@ module Cucumber
         private
 
         def create_id(element)
-          element.name.downcase.tr(' ', '-')
+          element.name.downcase.gsub(/ /, '-')
         end
 
         def create_tags_array(tags)
           tags_array = []
-          tags.each { |tag| tags_array << { name: tag.name, line: tag.location.line } }
+          tags.each { |tag| tags_array << { 'name' => tag.name, 'line' => tag.location.line } }
           tags_array
         end
       end
@@ -333,7 +336,7 @@ module Cucumber
 
     def self.create_comments_array(comments)
       comments_array = []
-      comments.each { |comment| comments_array << { value: comment.to_s.strip, line: comment.location.line } }
+      comments.each { |comment| comments_array << { 'value' => comment.to_s.strip, 'line' => comment.location.line } }
       comments_array
     end
   end

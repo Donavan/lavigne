@@ -37,6 +37,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry-byebug', '~> 3.4'
   spec.add_development_dependency 'rubocop', '~> 0'
 
-  spec.add_dependency 'avro-builder', '~> 1.8'
-  spec.add_dependency 'cucumber', '~> 0'
+  spec.add_dependency 'avro-builder'
+  spec.add_dependency 'cucumber', '~> 2.4'
 end

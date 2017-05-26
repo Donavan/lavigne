@@ -43,6 +43,9 @@ module Lavigne
         optional :embeddings, :array, items: :embedding
         optional :output, :array, items: :string
         optional :rows, :array, items: :row
+        optional :before, :array, items: :hook
+        optional :after, :array, items: :hook
+        optional :around, :array, items: :hook
       end
 
       record :scenario do
@@ -53,8 +56,10 @@ module Lavigne
         required :line, :long
         required :type, :string
         optional :tags, :array, items: :tag
+        optional :output, :array, items: :string
         optional :before, :array, items: :hook
         optional :after, :array, items: :hook
+        optional :around, :array, items: :hook
         required :steps, :array, items: :step
       end
 
@@ -67,6 +72,10 @@ module Lavigne
         required :line, :long
         optional :tags, :array, items: :tag
         required :elements, :array, items: :scenario
+        optional :output, :array, items: :string
+        optional :before, :array, items: :hook
+        optional :after, :array, items: :hook
+        optional :around, :array, items: :hook
       end
     end
   end
