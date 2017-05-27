@@ -1,12 +1,20 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
+
+require 'cucumber'
+
 require 'lavigne'
 require 'pry'
 require 'json'
 
-json2 = JSON.parse  File.read('test3.json')
-#Lavigne.save_features(json2, 'test3.avr')
+
+json2 = JSON.parse  File.read('test2.json')
+
+binding.pry
+
+
+Lavigne.save_features(json2, 'json2.avr')
 
 #in_file = File.open('test3.avr', 'rb')
 #dr = Lavigne.datafile_reader(in_file)

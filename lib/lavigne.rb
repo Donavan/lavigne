@@ -1,81 +1,27 @@
 require 'lavigne/version'
 require 'avro/builder'
 module Lavigne
-  def self.json_schema
-    @@schema_json ||= Avro::Builder.build do
-      namespace 'com.lavigne.cucumber'
 
-      record :tag do
-        required :name, :string
-        required :line, :long
-      end
+  class << self
+    def respond_to?(meth)
+      instance.respond_to?(meth)
+    end
 
-      record :row do
-        required :cells, :array, items: :string
-      end
+    def method_missing(meth, *args)
+      instance.send(meth, *args)
+    end
 
-      record :embedding do
-        required :mime_type, :string
-        required :data, :string
-      end
+    def instance
+      @instance ||= _instance_for(::Cucumber::VERSION)
+    end
 
-      record :match_rec do
-        required :location, :string
-      end
-
-      record :result_rec do
-        required :status, :string
-        optional :duration, :long
-      end
-
-      record :hook do
-        required :match, :match_rec
-        required :result, :result_rec
-        optional :output, :array, items: :string
-      end
-
-      record :step do
-        required :keyword, :string
-        required :name, :string
-        required :line, :long
-        required :match, :match_rec
-        required :result, :result_rec
-        optional :embeddings, :array, items: :embedding
-        optional :output, :array, items: :string
-        optional :rows, :array, items: :row
-        optional :before, :array, items: :hook
-        optional :after, :array, items: :hook
-        optional :around, :array, items: :hook
-      end
-
-      record :scenario do
-        optional :id, :string
-        required :keyword, :string
-        required :name, :string
-        required :description, :string
-        required :line, :long
-        required :type, :string
-        optional :tags, :array, items: :tag
-        optional :output, :array, items: :string
-        optional :before, :array, items: :hook
-        optional :after, :array, items: :hook
-        optional :around, :array, items: :hook
-        required :steps, :array, items: :step
-      end
-
-      record :feature do
-        required :uri, :string
-        required :id, :string
-        required :keyword, :string
-        required :name, :string
-        required :description, :string
-        required :line, :long
-        optional :tags, :array, items: :tag
-        required :elements, :array, items: :scenario
-        optional :output, :array, items: :string
-        optional :before, :array, items: :hook
-        optional :after, :array, items: :hook
-        optional :around, :array, items: :hook
+    def _instance_for(version)
+      case version
+        when /^2\.4/
+          require 'lavigne/cucumber/shims/cucumber_two_four_shim'
+          CucumberTwoFour::Shim.new
+        else
+          raise 'Unsupported Cucumber version'
       end
     end
   end

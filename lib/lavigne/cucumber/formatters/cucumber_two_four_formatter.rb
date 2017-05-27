@@ -4,38 +4,32 @@ require 'cucumber/formatter/backtrace_filter'
 require 'cucumber/formatter/io'
 require 'cucumber/formatter/hook_query_visitor'
 require 'cucumber/events'
+require 'lavigne/cucumber/formatters/base_formatter'
+module Lavigne
+  module CucumberTwoFour
 
-module Cucumber
-  module Formatter
-    # The formatter used for <tt>--format json</tt>
-    class LavigneFormatter
+    class Formatter < ::Lavigne::Cucumber::BaseFormatter
 
       def initialize(config)
+        super(config)
         config.on_event :before_test_case, &method(:on_before_test_case)
         config.on_event :after_test_case, &method(:on_after_test_case)
         config.on_event :before_test_step, &method(:on_before_test_step)
         config.on_event :after_test_step, &method(:on_after_test_step)
         config.on_event :finished_testing, &method(:on_finished_testing)
-        @io = File.open(config.out_stream, 'wb')
-        @writer = ::Lavigne.datafile_writer(@io)
-        @feature_hash = nil
-        at_exit do
-          @writer.close unless @writer.writer.closed?
-        end
-        @feature_hashes = []
+      end
+
+
+      def _new_feature_hash_if_needed(event)
+        return if same_feature_as_previous_test_case?(event.test_case.feature)
+        @writer << @feature_hash unless @feature_hash.nil? || @feature_hash.empty?
+        @feature_hash = builder.feature_has
       end
 
       def on_before_test_case(event)
         test_case = event.test_case
         builder = Builder.new(test_case)
-        unless same_feature_as_previous_test_case?(test_case.feature)
-          unless @feature_hash.nil? || @feature_hash.empty?
-            #binding.pry
-            @writer << @feature_hash
-          end
-          @feature_hash = builder.feature_hash
-          @feature_hashes << @feature_hash
-        end
+        _new_feature_hash_if_needed(event)
         @test_case_hash = builder.test_case_hash
         if builder.background?
           feature_elements << builder.background_hash
