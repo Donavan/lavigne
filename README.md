@@ -1,8 +1,27 @@
 # Lavigne
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/lavigne`. To experiment with that code, run `bin/console` for an interactive prompt.
+A custom formatter for Cucumber, designed to facilitate reporting and metrics collection.  By leveraging the [Avro](https://rubygems.org/gems/avro/versions/1.8.1) encoder file sizes are kept to a minimum, at the expense of human readability.
 
-TODO: Delete this and the text above, and describe your gem
+The result file format is designed to keep the memory footprint to a minimum. When writing, each feature is written and released from memory.  When reading features can be streamed one at a time from disk.
+
+The intial schema is very much in flux.  It's not at all production ready.
+
+Currently only supports Cucumber 2.4.
+Even that may not work, there are zero tests currently ¯\_(ツ)_/¯
+
+## File Schema
+A lavigne result file contains discrete records that are either a header record or a feature.  Header records have a type attribute for categorization with the special *headers_end* header type indicating the end of the headers section.
+
+* file_header - Contains version information for Lavgine, Ruby and Cucumber.
+* run_info - Contains details about the run, and the enviroment
+* kvp - Key value pair headers allow for collection of data by the test developer.
+
+Features each adhere to the schema provided by various Cucumber shims. Theses will be available as distinct schema files later for now you can save the results from 
+```ruby
+Lavigne._instance_for(::Cucumber::VERSION).json_schema
+```
+
+See the implementation of Lavigne::ResultFile for details on parsing this format.
 
 ## Installation
 
