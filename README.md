@@ -21,6 +21,8 @@ Features each adhere to the schema provided by various Cucumber shims. Theses wi
 Lavigne._instance_for(::Cucumber::VERSION).json_schema
 ```
 
+The schema for each Cumber shim is intended to be a compatible with the json formatter output for features.  If you have code that can parse a Cucumber json file you're most of the way to using Lavigne.
+
 See the implementation of Lavigne::ResultFile for details on parsing this format.
 
 ## Installation
@@ -41,7 +43,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Capture Metadata about your run
+```ruby
+# See avro/dsl/lavigne_common.rb:run_info_v1 for details on all fields
+# start_time, and hostname are popoulated automatically
+Lavigne.include_run_info( { 'suite_id' => 'SUITE_ID' , 'run_id' => 'RUN_ID' })
+
+```
+
+### Capture Enviroment Variables
+```ruby
+# Grab all env vars
+Lavigne.capture_env
+
+# Grab only certain env vars
+Lavigne.capture_env only: [ 'foo', 'bar ]
+
+# Grab all env vars except secrets
+Lavigne.capture_env except: [ 'secret1', 'secret2' ]
+```
+
 
 ## Development
 
