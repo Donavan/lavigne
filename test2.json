@@ -1,0 +1,5837 @@
+[
+  {
+    "uri": "features/brittle.feature",
+    "id": "brittle-feature",
+    "keyword": "Feature",
+    "name": "Brittle feature",
+    "description": "  This feature has scenarios that fail quite often, but not always",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@brittle_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_4",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "brittle-feature;brittle-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Brittle regular scenario.",
+        "description": "    This is a plain scenario that fails quite often, but not always",
+        "line": 6,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_1",
+            "line": 5
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 5
+          },
+          {
+            "name": "@scenario",
+            "line": 5
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 159559
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 41576
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something broken",
+            "line": 9,
+            "match": {
+              "location": "features/step_definitions/steps.rb:13"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "'something' is broken (RuntimeError)\n./features/step_definitions/steps.rb:14:in `/I do (.*) broken/'\nfeatures/brittle.feature:9:in `When I do something broken'",
+              "duration": 127871
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is brittle",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/steps.rb:29"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 134015
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-feature;brittle-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "    This is a scenario outline that fails quite often, but not always",
+        "line": 20,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 122480
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16645
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13208
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is brittle",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17385
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 126013
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-feature;brittle-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "    This is a scenario outline that fails quite often, but not always",
+        "line": 21,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 136796
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18702
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12772
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is brittle",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:29"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"brittle\"\n     got: \"dinner\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:30:in `/(.*) is brittle/'\nfeatures/brittle.feature:21:in `Then dinner is brittle'\nfeatures/brittle.feature:17:in `Then <what> is brittle'",
+              "duration": 12097495
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 140218
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-feature;brittle-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Brittle scenario with data tables.",
+        "description": "    This is a scenario with datatables that fails quite often, but not always",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_3",
+            "line": 23
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 23
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 23
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 122579
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a brittle scenario with datatables",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21583
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 27,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 114081
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I do something stable",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14195
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is brittle",
+            "line": 32,
+            "match": {
+              "location": "features/step_definitions/steps.rb:29"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"brittle\"\n     got: \"Everything\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:30:in `/(.*) is brittle/'\nfeatures/brittle.feature:32:in `Then Everything is brittle'",
+              "duration": 378135
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 269738
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-feature;brittle-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Brittle regular scenario.",
+        "description": "  This is a plain scenario that breaks quite often, but not always",
+        "line": 35,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_4",
+            "line": 34
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 34
+          },
+          {
+            "name": "@scenario",
+            "line": 34
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118660
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 37,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15707
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle",
+            "line": 38,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "something is brittle (RuntimeError)\n./features/step_definitions/steps.rb:10:in `/I do (.*) brittle/'\nfeatures/brittle.feature:38:in `When I do something brittle'",
+              "duration": 137890
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 39,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 130438
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-feature;brittle-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "  This is a scenario outline that breaks quite often, but not always",
+        "line": 49,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_5",
+            "line": 41
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 41
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 41
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118882
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 49,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14722
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango brittle",
+            "line": 49,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "the tango is brittle (RuntimeError)\n./features/step_definitions/steps.rb:10:in `/I do (.*) brittle/'\nfeatures/brittle.feature:49:in `When I do the tango brittle'\nfeatures/brittle.feature:45:in `When I do <something> brittle'",
+              "duration": 100015
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is awesome",
+            "line": 49,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 156378
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-feature;brittle-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "  This is a scenario outline that breaks quite often, but not always",
+        "line": 50,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_5",
+            "line": 41
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 41
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 41
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 117701
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 50,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13247
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes brittle",
+            "line": 50,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15715
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is awesome",
+            "line": 50,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11301
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 126625
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-feature;brittle-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Brittle scenario with data tables.",
+        "description": "  This is a scenario with datatables that breaks quite often, but not always",
+        "line": 53,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_4_scenario_5",
+            "line": 52
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 52
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 52
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 126444
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a brittle scenario with datatables",
+            "line": 55,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13507
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 56,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40817
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I do something brittle",
+            "line": 60,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16418
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 61,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11149
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 126373
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/brittle_backround.feature",
+    "id": "brittle-background-feature",
+    "keyword": "Feature",
+    "name": "Brittle background feature",
+    "description": "  This feature has scenarios that fail quite often, but not always",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@brittle_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_8",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 117871
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12740
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11430
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-background-scenario.",
+        "keyword": "Scenario",
+        "name": "Brittle background scenario.",
+        "description": "    This is a background scenario that fails quite often, but not always",
+        "line": 10,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_1",
+            "line": 9
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 9
+          },
+          {
+            "name": "@scenario",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11255
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 13,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14637
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 183461
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 158180
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16969
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13160
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-background-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Brittle background scenario outline.",
+        "description": "    This is a background scenario outline that fails quite often, but not always",
+        "line": 23,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_2",
+            "line": 15
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 15
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 15
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11586
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13491
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is brittle",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15967
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 142277
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 138193
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16816
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11323
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-background-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Brittle background scenario outline.",
+        "description": "    This is a background scenario outline that fails quite often, but not always",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_2",
+            "line": 15
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 15
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 15
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11429
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 46137
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is brittle",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14385
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 125749
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 155404
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13678
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11298
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Brittle scenario with data tables.",
+        "description": "    This is a background scenario with datatables that fails quite often, but not always",
+        "line": 27,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_3",
+            "line": 26
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 26
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 26
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a brittle scenario with datatables",
+            "line": 29,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11661
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 30,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 38603
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I do something stable",
+            "line": 34,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13766
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is brittle",
+            "line": 35,
+            "match": {
+              "location": "features/step_definitions/steps.rb:29"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"brittle\"\n     got: \"Everything\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:30:in `/(.*) is brittle/'\nfeatures/brittle_backround.feature:35:in `Then Everything is brittle'",
+              "duration": 188475
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 153704
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119683
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14215
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12328
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Brittle regular scenario.",
+        "description": "  This is a plain scenario that breaks quite often, but not always",
+        "line": 38,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_4",
+            "line": 37
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 37
+          },
+          {
+            "name": "@scenario",
+            "line": 37
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 40,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12227
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle",
+            "line": 41,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13990
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 42,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12233
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 173280
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 120475
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13893
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11721
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "  This is a scenario outline that breaks quite often, but not always",
+        "line": 52,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_5",
+            "line": 44
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 44
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 44
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 52,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11367
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango brittle",
+            "line": 52,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "the tango is brittle (RuntimeError)\n./features/step_definitions/steps.rb:10:in `/I do (.*) brittle/'\nfeatures/brittle_backround.feature:52:in `When I do the tango brittle'\nfeatures/brittle_backround.feature:48:in `When I do <something> brittle'",
+              "duration": 92059
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is awesome",
+            "line": 52,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119587
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 123047
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18201
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10964
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "  This is a scenario outline that breaks quite often, but not always",
+        "line": 53,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_5",
+            "line": 44
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 44
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 44
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 53,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10308
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes brittle",
+            "line": 53,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14388
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is awesome",
+            "line": 53,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11581
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 114047
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 168679
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34601
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12955
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Brittle scenario with data tables.",
+        "description": "  This is a scenario with datatables that breaks quite often, but not always",
+        "line": 56,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_8_scenario_5",
+            "line": 55
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 55
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 55
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a brittle scenario with datatables",
+            "line": 58,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10607
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 59,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36522
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I do something brittle",
+            "line": 63,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13670
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 64,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11308
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 120715
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/brittle_brittle_backround.feature",
+    "id": "brittle-background-feature",
+    "keyword": "Feature",
+    "name": "Brittle background feature",
+    "description": "  This feature has scenarios that fail in the background steps quite often, but not always",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@brittle_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_9",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118410
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12787
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26868
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-background-scenario.",
+        "keyword": "Scenario",
+        "name": "Brittle background scenario.",
+        "description": "    This is a background scenario that fails quite often, but not always",
+        "line": 10,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_1",
+            "line": 9
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 9
+          },
+          {
+            "name": "@scenario",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 39293
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 13,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14202
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118977
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 147697
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15362
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15015
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-background-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Brittle background scenario outline.",
+        "description": "    This is a background scenario outline that fails quite often, but not always",
+        "line": 23,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_2",
+            "line": 15
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 15
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 15
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12089
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13492
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is awesome",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11032
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116397
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 130169
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13663
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "something is brittle (RuntimeError)\n./features/step_definitions/steps.rb:10:in `/I do (.*) brittle/'\nfeatures/brittle_brittle_backround.feature:7:in `When I do something brittle in the background'",
+              "duration": 120045
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-background-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Brittle background scenario outline.",
+        "description": "    This is a background scenario outline that fails quite often, but not always",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_2",
+            "line": 15
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 15
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 15
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is awesome",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 148165
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 144657
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 19051
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "something is brittle (RuntimeError)\n./features/step_definitions/steps.rb:10:in `/I do (.*) brittle/'\nfeatures/brittle_brittle_backround.feature:7:in `When I do something brittle in the background'",
+              "duration": 90742
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Brittle scenario with data tables.",
+        "description": "    This is a background scenario with datatables that fails quite often, but not always",
+        "line": 27,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_3",
+            "line": 26
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 26
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 26
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a brittle scenario with datatables",
+            "line": 29,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 30,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I do something stable",
+            "line": 34,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 35,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 132802
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 122884
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17504
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12806
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Brittle regular scenario.",
+        "description": "  This is a plain scenario that breaks quite often, but not always",
+        "line": 38,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_4",
+            "line": 37
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 37
+          },
+          {
+            "name": "@scenario",
+            "line": 37
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 40,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10591
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 41,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11954
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 42,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13724
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118271
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 157074
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13117
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28045
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "  This is a scenario outline that breaks quite often, but not always",
+        "line": 52,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_5",
+            "line": 44
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 44
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 44
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 52,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23837
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 52,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11841
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is awesome",
+            "line": 52,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11446
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 135726
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 137928
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13028
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "something is brittle (RuntimeError)\n./features/step_definitions/steps.rb:10:in `/I do (.*) brittle/'\nfeatures/brittle_brittle_backround.feature:7:in `When I do something brittle in the background'",
+              "duration": 95485
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Brittle scenario outline.",
+        "description": "  This is a scenario outline that breaks quite often, but not always",
+        "line": 53,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_5",
+            "line": 44
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 44
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 44
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 53,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 53,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is awesome",
+            "line": 53,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118681
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 121244
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15844
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something brittle in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:9"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "something is brittle (RuntimeError)\n./features/step_definitions/steps.rb:10:in `/I do (.*) brittle/'\nfeatures/brittle_brittle_backround.feature:7:in `When I do something brittle in the background'",
+              "duration": 90772
+            }
+          }
+        ]
+      },
+      {
+        "id": "brittle-background-feature;brittle-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Brittle scenario with data tables.",
+        "description": "  This is a scenario with datatables that breaks quite often, but not always",
+        "line": 56,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@brittle_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_9_scenario_5",
+            "line": 55
+          },
+          {
+            "name": "@brittle_scenario",
+            "line": 55
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 55
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a brittle scenario with datatables",
+            "line": 58,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 59,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I do something stable",
+            "line": 63,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 64,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 134880
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/broken.feature",
+    "id": "broken-feature",
+    "keyword": "Feature",
+    "name": "Broken feature",
+    "description": "  This feature has scenarios that always break before getting to an assertion.",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@broken_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_3",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "broken-feature;failing-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Failing regular scenario.",
+        "description": "    This is a plain scenario which always breaks before getting to an assertion.",
+        "line": 6,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@broken_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_3",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1_scenario_1",
+            "line": 5
+          },
+          {
+            "name": "@broken_scenario",
+            "line": 5
+          },
+          {
+            "name": "@scenario",
+            "line": 5
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 145032
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a broken scenario",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17882
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something broken",
+            "line": 9,
+            "match": {
+              "location": "features/step_definitions/steps.rb:13"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "'something' is broken (RuntimeError)\n./features/step_definitions/steps.rb:14:in `/I do (.*) broken/'\nfeatures/broken.feature:9:in `When I do something broken'",
+              "duration": 155115
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is horrid",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 134764
+            }
+          }
+        ]
+      },
+      {
+        "id": "broken-feature;failing-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Failing scenario outline.",
+        "description": "    This is a scenario outline which always breaks before getting to an assertion.",
+        "line": 20,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@broken_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_3",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_3_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@broken_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 122622
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a broken scenario outline",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15730
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango broken",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:13"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "'the tango' is broken (RuntimeError)\n./features/step_definitions/steps.rb:14:in `/I do (.*) broken/'\nfeatures/broken.feature:20:in `When I do the tango broken'\nfeatures/broken.feature:16:in `When I do <something> broken'",
+              "duration": 130255
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is horrid",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 129489
+            }
+          }
+        ]
+      },
+      {
+        "id": "broken-feature;failing-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Failing scenario outline.",
+        "description": "    This is a scenario outline which always breaks before getting to an assertion.",
+        "line": 21,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@broken_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_3",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_3_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@broken_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119687
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a broken scenario outline",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16873
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes broken",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:13"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "'the dishes' is broken (RuntimeError)\n./features/step_definitions/steps.rb:14:in `/I do (.*) broken/'\nfeatures/broken.feature:21:in `When I do the dishes broken'\nfeatures/broken.feature:16:in `When I do <something> broken'",
+              "duration": 108651
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is horrid",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 150710
+            }
+          }
+        ]
+      },
+      {
+        "id": "broken-feature;failing-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Failing scenario with data tables.",
+        "description": "    This is a scenario with datatables which always breaks before getting to an assertion.",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@broken_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_3",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_3_scenario_3",
+            "line": 23
+          },
+          {
+            "name": "@broken_scenario",
+            "line": 23
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 23
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116836
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a broken scenario with datatables",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15753
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 27,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 46210
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I do something broken",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/steps.rb:13"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "'something' is broken (RuntimeError)\n./features/step_definitions/steps.rb:14:in `/I do (.*) broken/'\nfeatures/broken.feature:31:in `And I do something broken'",
+              "duration": 96139
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is horrid",
+            "line": 32,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 140886
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/failing.feature",
+    "id": "failing-feature",
+    "keyword": "Feature",
+    "name": "Failing feature",
+    "description": "  This feature has scenarios that always fail.",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@failing_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_2",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "failing-feature;failing-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Failing regular scenario.",
+        "description": "    This is a plain scenario which always fails.",
+        "line": 6,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_2",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1_scenario_1",
+            "line": 5
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 5
+          },
+          {
+            "name": "@scenario",
+            "line": 5
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 115010
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28669
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 9,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10983
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is horrid",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"awesome\"\n     got: \"Everything\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:26:in `/(.*) is horrid/'\nfeatures/failing.feature:10:in `Then Everything is horrid'",
+              "duration": 234306
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 120056
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-feature;failing-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Failing scenario outline.",
+        "description": "    This is a scenario outline which always fails.",
+        "line": 20,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_2",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_2_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 123680
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario outline",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15817
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14486
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is horrid",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"awesome\"\n     got: \"the floor\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:26:in `/(.*) is horrid/'\nfeatures/failing.feature:20:in `Then the floor is horrid'\nfeatures/failing.feature:17:in `Then <what> is horrid'",
+              "duration": 180604
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 136486
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-feature;failing-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Failing scenario outline.",
+        "description": "    This is a scenario outline which always fails.",
+        "line": 21,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_2",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_2_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 168806
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario outline",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15299
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26351
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is horrid",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"awesome\"\n     got: \"dinner\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:26:in `/(.*) is horrid/'\nfeatures/failing.feature:21:in `Then dinner is horrid'\nfeatures/failing.feature:17:in `Then <what> is horrid'",
+              "duration": 202005
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 122006
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-feature;failing-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Failing scenario with data tables.",
+        "description": "    This is a scenario with datatables which always fails.",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_2",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_2_scenario_3",
+            "line": 23
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 23
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 23
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 209826
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario with datatables",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 196253
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 27,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42655
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is horrid",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"awesome\"\n     got: \"Everything\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:26:in `/(.*) is horrid/'\nfeatures/failing.feature:31:in `Then Everything is horrid'",
+              "duration": 176206
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 145905
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/failing_background.feature",
+    "id": "failing-background-feature",
+    "keyword": "Feature",
+    "name": "Failing background feature",
+    "description": "  This feature has scenarios that always fail.",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@failing_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_7",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 121938
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16772
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11634
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-background-feature;failing-background-scenario.",
+        "keyword": "Scenario",
+        "name": "Failing background scenario.",
+        "description": "    This is a background scenario which always fails.",
+        "line": 10,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7_scenario_1",
+            "line": 9
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 9
+          },
+          {
+            "name": "@scenario",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13293
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 13,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11672
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 153148
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 120348
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12931
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11611
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-background-feature;failing-background-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Failing background scenario outline.",
+        "description": "    This is a background scenario outline which always fails.",
+        "line": 23,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7_scenario_2",
+            "line": 15
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 15
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 15
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario outline",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9745
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11181
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is horrid",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"awesome\"\n     got: \"the floor\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:26:in `/(.*) is horrid/'\nfeatures/failing_background.feature:23:in `Then the floor is horrid'\nfeatures/failing_background.feature:20:in `Then <what> is horrid'",
+              "duration": 187524
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 128167
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 144573
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14549
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9905
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-background-feature;failing-background-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Failing background scenario outline.",
+        "description": "    This is a background scenario outline which always fails.",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7_scenario_2",
+            "line": 15
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 15
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 15
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario outline",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9610
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10984
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is horrid",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"awesome\"\n     got: \"dinner\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:26:in `/(.*) is horrid/'\nfeatures/failing_background.feature:24:in `Then dinner is horrid'\nfeatures/failing_background.feature:20:in `Then <what> is horrid'",
+              "duration": 141012
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116616
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 132689
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13267
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10410
+            }
+          }
+        ]
+      },
+      {
+        "id": "failing-background-feature;failing-background-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Failing background scenario with data tables.",
+        "description": "    This is a background scenario with datatables which always fails.",
+        "line": 27,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@failing_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_7_scenario_3",
+            "line": 26
+          },
+          {
+            "name": "@failing_scenario",
+            "line": 26
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 26
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a failing scenario with datatables",
+            "line": 29,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25302
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 30,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 46480
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is horrid",
+            "line": 34,
+            "match": {
+              "location": "features/step_definitions/steps.rb:25"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "\nexpected: \"awesome\"\n     got: \"Everything\"\n\n(compared using ==)\n (RSpec::Expectations::ExpectationNotMetError)\n./features/step_definitions/steps.rb:26:in `/(.*) is horrid/'\nfeatures/failing_background.feature:34:in `Then Everything is horrid'",
+              "duration": 186297
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 149034
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/skipped.feature",
+    "id": "skipped-feature",
+    "keyword": "Feature",
+    "name": "Skipped feature",
+    "description": "  This feature has scenarios that are always skipped due to missing steps.",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@skipped_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_5",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "skipped-feature;skipped-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Skipped regular scenario.",
+        "description": "    This is a plain scenario which is always skipped due to missing steps.",
+        "line": 6,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@skipped_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5scenario_1",
+            "line": 5
+          },
+          {
+            "name": "@skipped_scenario",
+            "line": 5
+          },
+          {
+            "name": "@scenario",
+            "line": 5
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 141921
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14363
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 9,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11701
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I am missing a step",
+            "line": 10,
+            "match": {
+              "location": "features/skipped.feature:10"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 11,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 159660
+            }
+          }
+        ]
+      },
+      {
+        "id": "skipped-feature;skipped-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Skipped scenario outline.",
+        "description": "    This is a scenario outline which is always skipped due to missing steps.",
+        "line": 22,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@skipped_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5_scenario_2",
+            "line": 13
+          },
+          {
+            "name": "@skipped_scenario",
+            "line": 13
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 13
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 115699
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 22,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13356
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 22,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 24290
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I am missing a step",
+            "line": 22,
+            "match": {
+              "location": "features/skipped.feature:22"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is awesome",
+            "line": 22,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 128290
+            }
+          }
+        ]
+      },
+      {
+        "id": "skipped-feature;skipped-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Skipped scenario outline.",
+        "description": "    This is a scenario outline which is always skipped due to missing steps.",
+        "line": 23,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@skipped_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5_scenario_2",
+            "line": 13
+          },
+          {
+            "name": "@skipped_scenario",
+            "line": 13
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 13
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 113210
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12896
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11187
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I am missing a step",
+            "line": 23,
+            "match": {
+              "location": "features/skipped.feature:23"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is awesome",
+            "line": 23,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 151200
+            }
+          }
+        ]
+      },
+      {
+        "id": "skipped-feature;skipped-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Skipped scenario with data tables.",
+        "description": "    This is a scenario with datatables which is always skipped due to missing steps.",
+        "line": 26,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@skipped_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_5_scenario_3",
+            "line": 25
+          },
+          {
+            "name": "@skipped_scenario",
+            "line": 25
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 25
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 117684
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario with datatables",
+            "line": 28,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13591
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I am missing a step",
+            "line": 29,
+            "match": {
+              "location": "features/skipped.feature:29"
+            },
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 30,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 34,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116239
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/stable.feature",
+    "id": "stable-feature",
+    "keyword": "Feature",
+    "name": "Stable feature",
+    "description": "  This feature has scenarios that always pass.",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@stable_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_1",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "stable-feature;stable-regular-scenario.",
+        "keyword": "Scenario",
+        "name": "Stable regular scenario.",
+        "description": "    This is a plain scenario which always passes.",
+        "line": 6,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1_scenario_1",
+            "line": 5
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 5
+          },
+          {
+            "name": "@scenario",
+            "line": 5
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 133981
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26698
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 9,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11388
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10587
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 125932
+            }
+          }
+        ]
+      },
+      {
+        "id": "stable-feature;stable-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Stable scenario outline.",
+        "description": "    This is a scenario outline which always passes.",
+        "line": 20,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118801
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15645
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11716
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is awesome",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11154
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119223
+            }
+          }
+        ]
+      },
+      {
+        "id": "stable-feature;stable-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Stable scenario outline.",
+        "description": "    This is a scenario outline which always passes.",
+        "line": 21,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1_scenario_2",
+            "line": 12
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 12
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 12
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 116930
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15005
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11260
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is awesome",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10578
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119485
+            }
+          }
+        ]
+      },
+      {
+        "id": "stable-feature;stable-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Stable scenario with data tables.",
+        "description": "    This is a scenario with datatables which always passes.",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_1_scenario_3",
+            "line": 23
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 23
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 23
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 138107
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario with datatables",
+            "line": 26,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12755
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 27,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 39229
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 18559
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 150441
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/stable_background.feature",
+    "id": "stable-background-feature",
+    "keyword": "Feature",
+    "name": "Stable background feature",
+    "description": "  This feature has scenarios that always pass.",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@stable_feature",
+        "line": 1
+      },
+      {
+        "name": "@feature_6",
+        "line": 1
+      },
+      {
+        "name": "@feature",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 127365
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15567
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12326
+            }
+          }
+        ]
+      },
+      {
+        "id": "stable-background-feature;stable-background-scenario.",
+        "keyword": "Scenario",
+        "name": "Stable background scenario.",
+        "description": "    This is a background scenario which always passes.",
+        "line": 10,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6_scenario_1",
+            "line": 9
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 9
+          },
+          {
+            "name": "@scenario",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11116
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable",
+            "line": 13,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11372
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 142235
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 139637
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15293
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33480
+            }
+          }
+        ]
+      },
+      {
+        "id": "stable-background-feature;stable-background-scenario-outline.;;2",
+        "keyword": "Scenario Outline",
+        "name": "Stable background scenario outline.",
+        "description": "    This is a background scenario outline which always passes.",
+        "line": 24,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6_scenario_2",
+            "line": 16
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 16
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 16
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11960
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the tango stable",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11423
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "the floor is awesome",
+            "line": 24,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12078
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 173106
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 110206
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14388
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10524
+            }
+          }
+        ]
+      },
+      {
+        "id": "stable-background-feature;stable-background-scenario-outline.;;3",
+        "keyword": "Scenario Outline",
+        "name": "Stable background scenario outline.",
+        "description": "    This is a background scenario outline which always passes.",
+        "line": 25,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6_scenario_2",
+            "line": 16
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 16
+          },
+          {
+            "name": "@scenario_outline",
+            "line": 16
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario outline",
+            "line": 25,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9728
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do the dishes stable",
+            "line": 25,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11387
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "dinner is awesome",
+            "line": 25,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11137
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 120300
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 109679
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario background",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 13047
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I do something stable in the background",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10545
+            }
+          }
+        ]
+      },
+      {
+        "id": "stable-background-feature;stable-background-scenario-with-data-tables.",
+        "keyword": "Scenario",
+        "name": "Stable background scenario with data tables.",
+        "description": "    This is a background scenario with datatables which always passes.",
+        "line": 28,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@stable_feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6",
+            "line": 1
+          },
+          {
+            "name": "@feature",
+            "line": 1
+          },
+          {
+            "name": "@feature_6_scenario_3",
+            "line": 27
+          },
+          {
+            "name": "@stable_scenario",
+            "line": 27
+          },
+          {
+            "name": "@scenario_datatable",
+            "line": 27
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I have a stable scenario with datatables",
+            "line": 30,
+            "match": {
+              "location": "features/step_definitions/steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9531
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I have awesome data",
+            "line": 31,
+            "rows": [
+              {
+                "cells": [
+                  "data",
+                  "more_data"
+                ]
+              },
+              {
+                "cells": [
+                  "foo",
+                  "bar"
+                ]
+              },
+              {
+                "cells": [
+                  "baz",
+                  "boat"
+                ]
+              }
+            ],
+            "match": {
+              "location": "features/step_definitions/steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34204
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "Everything is awesome",
+            "line": 35,
+            "match": {
+              "location": "features/step_definitions/steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11236
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 119995
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

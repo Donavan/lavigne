@@ -1,87 +1,56 @@
 require 'lavigne/version'
 require 'avro/builder'
+
 module Lavigne
-  def self.json_schema
-    @@schema_json ||= Avro::Builder.build do
-      namespace 'com.lavigne.cucumber'
 
-      record :tag do
-        required :name, :string
-        required :line, :long
-      end
+  ROOT = File.expand_path(File.dirname(__FILE__))
+  DSL_ROOT = File.realpath(File.join(ROOT, '..', 'avro', 'dsl'))
+  Avro::Builder.add_load_path(DSL_ROOT)
 
-      record :row do
-        required :cells, :array, items: :string
-      end
+  CURRENT_RUN_INFO_VERSION = 1
 
-      record :embedding do
-        required :mime_type, :string
-        required :data, :string
-      end
+  class << self
+    def respond_to?(meth)
+      instance.respond_to?(meth)
+    end
 
-      record :match_rec do
-        required :location, :string
-      end
+    def method_missing(meth, *args)
+      instance.send(meth, *args)
+    end
 
-      record :result_rec do
-        required :status, :string
-        optional :duration, :long
-      end
+    def instance
+      @instance ||= _instance_for(::Cucumber::VERSION)
+    end
 
-      record :hook do
-        required :match, :match_rec
-        required :result, :result_rec
-        optional :output, :array, items: :string
-      end
-
-      record :step do
-        required :keyword, :string
-        required :name, :string
-        required :line, :long
-        required :match, :match_rec
-        required :result, :result_rec
-        optional :embeddings, :array, items: :embedding
-        optional :output, :array, items: :string
-        optional :rows, :array, items: :row
-        optional :before, :array, items: :hook
-        optional :after, :array, items: :hook
-        optional :around, :array, items: :hook
-      end
-
-      record :scenario do
-        optional :id, :string
-        required :keyword, :string
-        required :name, :string
-        required :description, :string
-        required :line, :long
-        required :type, :string
-        optional :tags, :array, items: :tag
-        optional :output, :array, items: :string
-        optional :before, :array, items: :hook
-        optional :after, :array, items: :hook
-        optional :around, :array, items: :hook
-        required :steps, :array, items: :step
-      end
-
-      record :feature do
-        required :uri, :string
-        required :id, :string
-        required :keyword, :string
-        required :name, :string
-        required :description, :string
-        required :line, :long
-        optional :tags, :array, items: :tag
-        required :elements, :array, items: :scenario
-        optional :output, :array, items: :string
-        optional :before, :array, items: :hook
-        optional :after, :array, items: :hook
-        optional :around, :array, items: :hook
+    def _instance_for(version)
+      case version
+        when /^2\.4/
+          require 'lavigne/cucumber/shims/cucumber_two_four_shim'
+          CucumberTwoFour::Shim.new
+        else
+          raise 'Unsupported Cucumber version'
       end
     end
   end
 
   def self.schema
     @@schema ||= Avro::Schema.parse(Lavigne.json_schema)
+  end
+
+  def self.json_schema
+    Avro::Builder::build_dsl do
+      namespace 'com.lavigne'
+      import 'lavigne_record'
+    end.to_json
+  end
+
+
+  def self.header_datum_writer
+    Avro::IO::DatumWriter.new(Lavigne.header_schema)
+  end
+
+  def self.header_datafile_writer(file)
+    Avro::DataFile::Writer.new(file, Lavigne.header_datum_writer, Lavigne.header_schema)
   end
 
   def self.datum_writer
@@ -97,12 +66,28 @@ module Lavigne
   end
 
   def self.write_features(features, writer)
-    features.each { |feature| writer << feature }
+    features.each { |feature| writer << { 'feature' => feature } }
   end
 
-  def self.save_features(features, filename)
+  CURRENT_HEADER_INFO = {
+                          'lavigne_version' => ::Lavigne::VERSION,
+                          'ruby_version' => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}".freeze,
+                          'cucumber_version' => ::Cucumber::VERSION.chomp,
+  }
+
+  def self.write_headers(writer, other_headers = [])
+    writer << { 'header' => { 'type' => 'file_header', 'header' => CURRENT_HEADER_INFO } }
+    writer << { 'header' => { 'type' => 'run_info', 'header' => Lavigne.run_info } } unless Lavigne.run_info.nil?
+    other_headers.each {|header| writer << { 'header' => { 'type' => 'kvp', 'header' => header } } }
+    writer << { 'header' => { 'type' => 'headers_end' } }
+  end
+
+
+
+  def self.save_features(features, filename, other_headers = [])
     file = File.open(filename, 'wb')
     writer = Lavigne.datafile_writer(file)
+    self.write_headers(writer, other_headers)
     self.write_features(features, writer)
   ensure
     writer.close
