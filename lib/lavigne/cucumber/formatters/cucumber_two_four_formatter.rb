@@ -17,7 +17,6 @@ module Lavigne
         config.on_event :before_test_step, &method(:on_before_test_step)
         config.on_event :after_test_step, &method(:on_after_test_step)
         config.on_event :finished_testing, &method(:on_finished_testing)
-        @headers_needed = true
       end
 
 
@@ -84,25 +83,6 @@ module Lavigne
         @writer.close
       end
 
-      def puts(message)
-        test_step_output << message
-      end
-
-      def embed(src, mime_type, _label)
-        if File.file?(src)
-          content = File.open(src, 'rb') { |f| f.read }
-          data = encode64(content)
-        else
-          if mime_type =~ /;base64$/
-            mime_type = mime_type[0..-8]
-            data = src
-          else
-            data = encode64(src)
-          end
-        end
-        test_step_embeddings << { 'mime_type' => mime_type, 'data' => data }
-      end
-
       private
 
       def same_feature_as_previous_test_case?(feature)
@@ -117,17 +97,7 @@ module Lavigne
         test_step.source.last.location.file.include?('lib/cucumber/')
       end
 
-      def current_feature
-        @feature_hash ||= {}
-      end
 
-      def feature_elements
-        @feature_hash['elements'] ||= []
-      end
-
-      def steps
-        @element_hash['steps'] ||= []
-      end
 
       def hooks_of_type(hook_query)
         case hook_query.type
@@ -140,30 +110,6 @@ module Lavigne
           else
             fail 'Unkown hook type ' + hook_query.type.to_s
         end
-      end
-
-      def before_hooks
-        @element_hash['before'] ||= []
-      end
-
-      def after_hooks
-        @element_hash['after'] ||= []
-      end
-
-      def around_hooks
-        @element_hash['around'] ||= []
-      end
-
-      def after_step_hooks
-        @step_hash['after'] ||= []
-      end
-
-      def test_step_output
-        @step_or_hook_hash['output'] ||= []
-      end
-
-      def test_step_embeddings
-        @step_or_hook_hash['embeddings'] ||= []
       end
 
       def create_step_hash(step_source)
@@ -193,19 +139,6 @@ module Lavigne
         end
       end
 
-      def add_match_and_result(test_step, result)
-        @step_or_hook_hash['match'] = create_match_hash(test_step, result)
-        @step_or_hook_hash['result'] = create_result_hash(result)
-      end
-
-      def add_failed_around_hook(result)
-        @step_or_hook_hash = {}
-        around_hooks << @step_or_hook_hash
-        @step_or_hook_hash['match'] = { 'location' => "unknown_hook_location:1" }
-
-        @step_or_hook_hash['result'] = create_result_hash(result)
-      end
-
       def create_match_hash(test_step, result)
         { 'location' => test_step.action_location.to_s }
       end
@@ -225,10 +158,7 @@ module Lavigne
         ([message] + message_element.backtrace).join("\n")
       end
 
-      def encode64(data)
-        # strip newlines from the encoded data
-        Base64.encode64(data).gsub(/\n/, '')
-      end
+
 
       class Builder
         attr_reader :feature_hash, :background_hash, :test_case_hash
