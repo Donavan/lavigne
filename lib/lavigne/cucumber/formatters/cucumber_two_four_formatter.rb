@@ -17,16 +17,24 @@ module Lavigne
         config.on_event :before_test_step, &method(:on_before_test_step)
         config.on_event :after_test_step, &method(:on_after_test_step)
         config.on_event :finished_testing, &method(:on_finished_testing)
+        @headers_needed = true
       end
 
 
       def _new_feature_hash_if_needed(event)
         return if same_feature_as_previous_test_case?(event.test_case.feature)
-        @writer << @feature_hash unless @feature_hash.nil? || @feature_hash.empty?
-        @feature_hash = builder.feature_has
+        @writer << { 'feature' => @feature_hash } unless @feature_hash.nil? || @feature_hash.empty?
+        @feature_hash = builder.feature_hash
+      end
+
+      def write_headers
+        return unless @headers_needed
+        Lavigne.write_headers(@writer)
+        @headers_needed = false
       end
 
       def on_before_test_case(event)
+        write_headers
         test_case = event.test_case
         builder = Builder.new(test_case)
         _new_feature_hash_if_needed(event)
