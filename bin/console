@@ -5,19 +5,24 @@ require 'bundler/setup'
 require 'cucumber'
 
 require 'lavigne'
+require 'lavigne/result_file'
 require 'pry'
 require 'json'
 
+Lavigne.capture_env
+Lavigne.include_run_info( { 'suite_id' => 'SUITE_ID' , 'run_id' => 'RUN_ID' })
 
 json2 = JSON.parse  File.read('test2.json')
 
-binding.pry
+test_headers = [ 'name' => 'test', 'values' => [ 'name' => 'NAME', 'value' => 'VALUE' ] ]
+Lavigne.save_features(json2, 'json2.avr', test_headers)
 
-
-Lavigne.save_features(json2, 'json2.avr')
-
-#in_file = File.open('test3.avr', 'rb')
+in_file = File.open('json2.avr', 'rb')
 #dr = Lavigne.datafile_reader(in_file)
+
+
+res_file = Lavigne::ResultFile.new(in_file)
+
 
 #data = dr.to_a.first
 #file = File.open('test3.avr', 'rb')
