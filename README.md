@@ -57,7 +57,7 @@ Lavigne.include_run_info( { 'suite_id' => 'SUITE_ID' , 'run_id' => 'RUN_ID' })
 Lavigne.capture_env
 
 # Grab only certain env vars
-Lavigne.capture_env only: [ 'foo', 'bar ]
+Lavigne.capture_env only: [ 'foo', 'bar' ]
 
 # Grab all env vars except secrets
 Lavigne.capture_env except: [ 'secret1', 'secret2' ]
