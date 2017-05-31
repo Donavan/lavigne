@@ -38,5 +38,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~> 0'
 
   spec.add_dependency 'avro-builder'
+  spec.add_dependency 'avromatic'
   spec.add_dependency 'cucumber', '~> 2.4'
 end

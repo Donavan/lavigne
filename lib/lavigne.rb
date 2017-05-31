@@ -33,15 +33,16 @@ module Lavigne
     end
   end
 
+  def self.schema_store
+    @@schema_store = Avro::Builder::SchemaStore.new(path: Lavigne::DSL_ROOT)
+  end
+
   def self.schema
-    @@schema ||= Avro::Schema.parse(Lavigne.json_schema)
+    @@schema ||= schema_store.find('lavigne_record', 'com.lavigne')
   end
 
   def self.json_schema
-    Avro::Builder::build_dsl do
-      namespace 'com.lavigne'
-      import 'lavigne_record'
-    end.to_json
+    schema.to_json
   end
 
 

@@ -5,6 +5,8 @@ require 'cucumber/formatter/io'
 require 'cucumber/formatter/hook_query_visitor'
 require 'cucumber/events'
 require 'lavigne/cucumber/formatters/base_formatter'
+require 'pry'
+
 module Lavigne
   module CucumberTwoFour
 
@@ -20,7 +22,7 @@ module Lavigne
       end
 
 
-      def _new_feature_hash_if_needed(event)
+      def _new_feature_hash_if_needed(event, builder)
         return if same_feature_as_previous_test_case?(event.test_case.feature)
         @writer << { 'feature' => @feature_hash } unless @feature_hash.nil? || @feature_hash.empty?
         @feature_hash = builder.feature_hash
@@ -36,7 +38,7 @@ module Lavigne
         write_headers
         test_case = event.test_case
         builder = Builder.new(test_case)
-        _new_feature_hash_if_needed(event)
+        _new_feature_hash_if_needed(event, builder)
         @test_case_hash = builder.test_case_hash
         if builder.background?
           feature_elements << builder.background_hash
@@ -50,8 +52,9 @@ module Lavigne
 
       def on_before_test_step(event)
         test_step = event.test_step
+
         return if internal_hook?(test_step)
-        hook_query = HookQueryVisitor.new(test_step)
+        hook_query = ::Cucumber::Formatter::HookQueryVisitor.new(test_step)
         if hook_query.hook?
           @step_or_hook_hash = {}
           hooks_of_type(hook_query) << @step_or_hook_hash
@@ -61,21 +64,26 @@ module Lavigne
           feature_elements << @test_case_hash
           @element_hash = @test_case_hash
         end
+
         @step_or_hook_hash = create_step_hash(test_step.source.last)
         steps << @step_or_hook_hash
         @step_hash = @step_or_hook_hash
       end
 
       def on_after_test_step(event)
+
         test_step = event.test_step
-        result = event.result.with_filtered_backtrace(Cucumber::Formatter::BacktraceFilter)
+
+        result = event.result.with_filtered_backtrace(::Cucumber::Formatter::BacktraceFilter)
+
         return if internal_hook?(test_step)
+        
         add_match_and_result(test_step, result)
         @any_step_failed = true if result.failed?
       end
 
       def on_after_test_case(event)
-        result = event.result.with_filtered_backtrace(Cucumber::Formatter::BacktraceFilter)
+        result = event.result.with_filtered_backtrace(::Cucumber::Formatter::BacktraceFilter)
         add_failed_around_hook(result) if result.failed? && !@any_step_failed
       end
 
