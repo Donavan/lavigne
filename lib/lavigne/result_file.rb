@@ -28,28 +28,28 @@ module Lavigne
     end
 
     private
+
     def _read_headers
-      header = reader.first()['header']
-      until(_eoh?(header)) do
+      header = reader.first['header']
+      until _eoh?(header)
         _handle_header header
-        header = reader.first()['header']
+        header = reader.first['header']
       end
     end
 
     def _handle_header(header)
       case header['type']
-        when 'run_info'
-          @run_info = header['header']
-        when 'file_header'
-          @file_header = header['header']
-        when 'kvp'
-          @other_headers[header['header']['name']] = header['header']['values']
+      when 'run_info'
+        @run_info = header['header']
+      when 'file_header'
+        @file_header = header['header']
+      when 'kvp'
+        @other_headers[header['header']['name']] = header['header']['values']
       end
     end
 
     def _eoh?(header)
       header['type'] == :headers_end.to_s
     end
-
   end
 end

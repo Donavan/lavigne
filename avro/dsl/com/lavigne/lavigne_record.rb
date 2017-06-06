@@ -1,7 +1,6 @@
 namespace 'com.lavigne'
 
-
-enum :record_type, symbols: [:header, :feature,:file_header, :run_info, :kvp, :headers_end]
+enum :record_type, symbols: %i[header feature file_header run_info kvp headers_end]
 
 record :lavigne_record do
   required :rec_type, :record_type

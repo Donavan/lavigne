@@ -13,7 +13,6 @@ module Lavigne
         run_info['env'] = @env_vars unless run_info.nil?
       end
 
-
       def include_run_info(info)
         @run_info = info.dup
         @run_info['run_info_version'] = 1

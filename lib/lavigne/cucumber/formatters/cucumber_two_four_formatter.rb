@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'base64'
 require 'cucumber/formatter/backtrace_filter'
 require 'cucumber/formatter/io'
@@ -10,7 +11,6 @@ require 'pry'
 
 module Lavigne
   module CucumberTwoFour
-
     class Formatter < ::Lavigne::Cucumber::BaseFormatter
       attr_reader :builder
       def initialize(config)
@@ -35,7 +35,7 @@ module Lavigne
 
         @writer << { 'feature' => builder.feature } unless builder.feature.nil?
         builder.new_feature
-        #builder = Builder.new(test_case)
+        # builder = Builder.new(test_case)
 
         _new_feature_hash_if_needed(event, builder)
         @test_case_hash = builder.test_case_hash
@@ -70,13 +70,12 @@ module Lavigne
       end
 
       def on_after_test_step(event)
-
         test_step = event.test_step
 
         result = event.result.with_filtered_backtrace(::Cucumber::Formatter::BacktraceFilter)
 
         return if internal_hook?(test_step)
-        
+
         add_match_and_result(test_step, result)
         @any_step_failed = true if result.failed?
       end
@@ -86,7 +85,7 @@ module Lavigne
         add_failed_around_hook(result) if result.failed? && !@any_step_failed
       end
 
-      def on_finished_testing(event)
+      def on_finished_testing(_event)
         @writer.close
       end
 
@@ -104,24 +103,22 @@ module Lavigne
         test_step.source.last.location.file.include?('lib/cucumber/')
       end
 
-
-
       def hooks_of_type(hook_query)
         case hook_query.type
-          when :before
-            return before_hooks
-          when :after
-            return after_hooks
-          when :after_step
-            return after_step_hooks
+        when :before
+            before_hooks
+        when :after
+            after_hooks
+        when :after_step
+            after_step_hooks
           else
-            fail 'Unkown hook type ' + hook_query.type.to_s
+            raise 'Unkown hook type ' + hook_query.type.to_s
         end
       end
 
       def create_step_hash(step_source)
         step_hash = {
-            'keyword' => step_source.keyword,
+          'keyword' => step_source.keyword,
             'name' => step_source.name,
             'line' => step_source.location.line
         }
@@ -132,9 +129,9 @@ module Lavigne
       end
 
       def create_doc_string_hash(doc_string)
-        content_type = doc_string.content_type ? doc_string.content_type : ""
+        content_type = doc_string.content_type ? doc_string.content_type : ''
         {
-            'value' => doc_string.content,
+          'value' => doc_string.content,
             'content_type' => content_type,
             'line' => doc_string.location.line
         }
@@ -146,13 +143,13 @@ module Lavigne
         end
       end
 
-      def create_match_hash(test_step, result)
+      def create_match_hash(test_step, _result)
         { 'location' => test_step.action_location.to_s }
       end
 
       def create_result_hash(result)
         result_hash = {
-            'status' => result.to_sym.to_s
+          'status' => result.to_sym.to_s
         }
         result_hash['error_message'] = create_error_message(result) if result.failed? || result.pending?
         result.duration.tap { |duration| result_hash['duration'] = duration.nanoseconds }
@@ -164,8 +161,6 @@ module Lavigne
         message = "#{message_element.message} (#{message_element.class})"
         ([message] + message_element.backtrace).join("\n")
       end
-
-
 
       class Builder
         attr_reader :feature_hash, :background_hash, :test_case_hash
@@ -182,7 +177,7 @@ module Lavigne
 
         def feature(feature)
           @feature_hash = {
-              'uri' => feature.file,
+            'uri' => feature.file,
               'id' => create_id(feature),
               'keyword' => feature.keyword,
               'name' => feature.name,
@@ -203,7 +198,7 @@ module Lavigne
 
         def background(background)
           @background_hash = {
-              'keyword' => background.keyword,
+            'keyword' => background.keyword,
               'name' => background.name,
               'description' => background.description,
               'line' => background.location.line,
@@ -214,7 +209,7 @@ module Lavigne
 
         def scenario(scenario)
           @test_case_hash = {
-              'id' => create_id(scenario),
+            'id' => create_id(scenario),
               'keyword' => scenario.keyword,
               'name' => scenario.name,
               'description' => scenario.description,
@@ -227,7 +222,7 @@ module Lavigne
 
         def scenario_outline(scenario)
           @test_case_hash = {
-              'id' => create_id(scenario) + ';' + @example_id,
+            'id' => create_id(scenario) + ';' + @example_id,
               'keyword' => scenario.keyword,
               'name' => scenario.name,
               'description' => scenario.description,
@@ -262,7 +257,7 @@ module Lavigne
         private
 
         def create_id(element)
-          element.name.downcase.gsub(/ /, '-')
+          element.name.downcase.tr(' ', '-')
         end
 
         def create_tags_array(tags)

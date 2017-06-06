@@ -2,7 +2,6 @@ require 'lavigne/version'
 require 'avro/builder'
 
 module Lavigne
-
   ROOT = File.expand_path(File.dirname(__FILE__))
   DSL_ROOT = File.realpath(File.join(ROOT, '..', 'avro', 'dsl'))
   Avro::Builder.add_load_path(DSL_ROOT)
@@ -24,11 +23,11 @@ module Lavigne
 
     def _instance_for(version)
       case version
-        when /^2\.4/
-          require 'lavigne/cucumber/shims/cucumber_two_four_shim'
-          CucumberTwoFour::Shim.new
-        else
-          raise 'Unsupported Cucumber version'
+      when /^2\.4/
+        require 'lavigne/cucumber/shims/cucumber_two_four_shim'
+        CucumberTwoFour::Shim.new
+      else
+        raise 'Unsupported Cucumber version'
       end
     end
   end
@@ -70,15 +69,15 @@ module Lavigne
   end
 
   CURRENT_HEADER_INFO = {
-                          'lavigne_version' => ::Lavigne::VERSION,
-                          'ruby_version' => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}".freeze,
-                          'cucumber_version' => ::Cucumber::VERSION.chomp,
-  }
+    'lavigne_version' => ::Lavigne::VERSION,
+    'ruby_version' => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}".freeze,
+    'cucumber_version' => ::Cucumber::VERSION.chomp
+  }.freeze
 
   def self.write_headers(writer, other_headers = [])
     write_header writer, :file_header, CURRENT_HEADER_INFO
     write_header writer, :run_info, Lavigne.run_info unless Lavigne.run_info.nil?
-    other_headers.each {|header| write_header writer, :kvp, header }
+    other_headers.each { |header| write_header writer, :kvp, header }
     write_header writer, :headers_end, nil
   end
 
@@ -89,15 +88,15 @@ module Lavigne
     rescue
       # TODO: Scope this
       # This will raise an exception with meaningful output.
-      Avro::SchemaValidator.validate!( Lavigne.schema, hdr )
+      Avro::SchemaValidator.validate!(Lavigne.schema, hdr)
     end
   end
 
   def self.save_features(features, filename, other_headers = [])
     file = File.open(filename, 'wb')
     writer = Lavigne.datafile_writer(file)
-    self.write_headers(writer, other_headers)
-    self.write_features(features, writer)
+    write_headers(writer, other_headers)
+    write_features(features, writer)
   ensure
     writer.close
   end

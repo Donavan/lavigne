@@ -7,4 +7,3 @@ module Lavigne
     end
   end
 end
-

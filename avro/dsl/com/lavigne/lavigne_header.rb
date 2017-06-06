@@ -1,5 +1,5 @@
 namespace 'com.lavigne'
-enum :header_type, symbols: [:file_header, :run_info, :kvp, :headers_end]
+enum :header_type, symbols: %i[file_header run_info kvp headers_end]
 
 record :lavigne_header do
   required :type, :header_type

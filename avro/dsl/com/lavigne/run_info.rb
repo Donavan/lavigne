@@ -8,5 +8,5 @@ record :run_info do
   optional :owner_id, :string
   optional :team_id, :string
   optional :project_id, :string
-  optional :env, :array,  items: :kv_pair
+  optional :env, :array, items: :kv_pair
 end

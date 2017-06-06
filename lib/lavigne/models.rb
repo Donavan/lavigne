@@ -10,7 +10,7 @@ end
 module Lavigne
   class ModelWriter
     attr_accessor :writers_schema
-    def initialize(writers_schema=Lavigne.schema)
+    def initialize(writers_schema = Lavigne.schema)
       @writers_schema = writers_schema
     end
 
@@ -19,9 +19,8 @@ module Lavigne
     end
   end
 
-
   def self.model_datafile_writer(file)
-    Avro::DataFile::Writer.new(file, ModelWriter.new(), Lavigne.schema)
+    Avro::DataFile::Writer.new(file, ModelWriter.new, Lavigne.schema)
   end
 end
 

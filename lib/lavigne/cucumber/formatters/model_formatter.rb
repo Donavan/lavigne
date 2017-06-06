@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'base64'
 require 'cucumber/formatter/backtrace_filter'
 require 'cucumber/formatter/io'
@@ -32,14 +33,14 @@ module Lavigne
       def _write_feature
         return if @builder.nil? || @builder.current_feature.nil?
         _write_headers
-        record = { 'rec_type' =>  :feature.to_s, 'data' => builder.current_feature.avro_raw_value }
+        record = { 'rec_type' => :feature.to_s, 'data' => builder.current_feature.avro_raw_value }
 
         begin
           @writer << record
         rescue
           # TODO: Scope this
           # This will raise an exception with meaningful output.
-          Avro::SchemaValidator.validate!( Lavigne.schema, hdr )
+          Avro::SchemaValidator.validate!(Lavigne.schema, hdr)
         end
       end
 
@@ -51,10 +52,10 @@ module Lavigne
 
       def _init_events(config)
         config.on_event :before_test_case, &method(:on_before_test_case)
-        #config.on_event :after_test_case, &method(:on_after_test_case)
-        #config.on_event :before_test_step, &method(:on_before_test_step)
-        #config.on_event :after_test_step, &method(:on_after_test_step)
-        #config.on_event :finished_testing, &method(:on_finished_testing)
+        # config.on_event :after_test_case, &method(:on_after_test_case)
+        # config.on_event :before_test_step, &method(:on_before_test_step)
+        # config.on_event :after_test_step, &method(:on_after_test_step)
+        # config.on_event :finished_testing, &method(:on_finished_testing)
       end
 
       def _init_io(config)
