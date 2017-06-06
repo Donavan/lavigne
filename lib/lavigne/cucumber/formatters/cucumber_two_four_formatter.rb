@@ -5,13 +5,14 @@ require 'cucumber/formatter/io'
 require 'cucumber/formatter/hook_query_visitor'
 require 'cucumber/events'
 require 'lavigne/cucumber/formatters/base_formatter'
+require 'lavigne/cucumber/formatters/feature_builder'
 require 'pry'
 
 module Lavigne
   module CucumberTwoFour
 
     class Formatter < ::Lavigne::Cucumber::BaseFormatter
-
+      attr_reader :builder
       def initialize(config)
         super(config)
         config.on_event :before_test_case, &method(:on_before_test_case)
@@ -19,13 +20,7 @@ module Lavigne
         config.on_event :before_test_step, &method(:on_before_test_step)
         config.on_event :after_test_step, &method(:on_after_test_step)
         config.on_event :finished_testing, &method(:on_finished_testing)
-      end
-
-
-      def _new_feature_hash_if_needed(event, builder)
-        return if same_feature_as_previous_test_case?(event.test_case.feature)
-        @writer << { 'feature' => @feature_hash } unless @feature_hash.nil? || @feature_hash.empty?
-        @feature_hash = builder.feature_hash
+        @builder = ::Lavigne::Cucumber::FeatureBuilder
       end
 
       def write_headers
@@ -37,7 +32,11 @@ module Lavigne
       def on_before_test_case(event)
         write_headers
         test_case = event.test_case
-        builder = Builder.new(test_case)
+
+        @writer << { 'feature' => builder.feature } unless builder.feature.nil?
+        builder.new_feature
+        #builder = Builder.new(test_case)
+
         _new_feature_hash_if_needed(event, builder)
         @test_case_hash = builder.test_case_hash
         if builder.background?

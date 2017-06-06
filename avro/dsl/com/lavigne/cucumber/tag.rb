@@ -1,6 +1,6 @@
 namespace 'com.lavigne.cucumber'
 
 record :tag do
-  required :name, :string
+  required :tag_name, :string
   required :line, :long
 end

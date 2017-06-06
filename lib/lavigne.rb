@@ -77,10 +77,22 @@ module Lavigne
   }
 
   def self.write_headers(writer, other_headers = [])
-    writer << { 'header' => { 'type' => 'file_header', 'header' => CURRENT_HEADER_INFO } }
-    writer << { 'header' => { 'type' => 'run_info', 'header' => Lavigne.run_info } } unless Lavigne.run_info.nil?
-    other_headers.each {|header| writer << { 'header' => { 'type' => 'kvp', 'header' => header } } }
-    writer << { 'header' => { 'type' => 'headers_end' } }
+    write_header writer, :file_header, CURRENT_HEADER_INFO
+    write_header writer, :run_info, Lavigne.run_info unless Lavigne.run_info.nil?
+    other_headers.each {|header| write_header writer, :kvp, header }
+    write_header writer, :headers_end, nil
+  end
+
+  def self.write_header(writer, rec_type, header)
+    hdr = { 'rec_type' => rec_type.to_s, 'data' => header }
+    begin
+      writer << hdr
+    rescue Exception => ex
+      binding.pry;2
+      puts ex.message
+      # Avro::SchemaValidator.validate!( Lavigne.schema, hdr )
+      raise ex
+    end
   end
 
 

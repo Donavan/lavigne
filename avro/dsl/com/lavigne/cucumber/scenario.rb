@@ -1,9 +1,9 @@
 namespace 'com.lavigne.cucumber'
 
 record :scenario do
-  optional :id, :string
+  optional :scenario_id, :string
   required :keyword, :string
-  required :name, :string
+  required :scenario_name, :string
   required :description, :string
   required :line, :long
   required :type, :string
