@@ -21,13 +21,10 @@ module Lavigne
       def on_before_test_case(event)
         test_case = event.test_case
 
-        if builder.nil? || !builder.same_feature?(test_case)
-          _write_feature
-          @builder = ::Lavigne::Cucumber::FeatureBuilder.new(test_case)
-          return
-        end
-        binding.pry
+        return unless builder.nil? || builder.same_feature?(test_case)
 
+        _write_feature
+        @builder = ::Lavigne::Cucumber::FeatureBuilder.new(test_case)
       end
 
       private
