@@ -36,15 +36,14 @@ module Lavigne
         return if @builder.nil? || @builder.current_feature.nil?
         _write_headers
         record = { 'rec_type' =>  :feature.to_s, 'data' => builder.current_feature.avro_raw_value }
-        #record = { 'rec_type' =>  :feature.to_s, 'data' => builder.current_feature }
+
         begin
           @writer << record
-        rescue Exception => ex
-          binding.pry;2
-          STDOUT.puts ex.message
+        rescue
+          # TODO: Scope this
+          # This will raise an exception with meaningful output.
+          Avro::SchemaValidator.validate!( Lavigne.schema, hdr )
         end
-
-
       end
 
       def _write_headers

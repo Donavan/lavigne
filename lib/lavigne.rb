@@ -45,7 +45,6 @@ module Lavigne
     schema.to_json
   end
 
-
   def self.header_datum_writer
     Avro::IO::DatumWriter.new(Lavigne.header_schema)
   end
@@ -87,15 +86,12 @@ module Lavigne
     hdr = { 'rec_type' => rec_type.to_s, 'data' => header }
     begin
       writer << hdr
-    rescue Exception => ex
-      binding.pry;2
-      puts ex.message
-      # Avro::SchemaValidator.validate!( Lavigne.schema, hdr )
-      raise ex
+    rescue
+      # TODO: Scope this
+      # This will raise an exception with meaningful output.
+      Avro::SchemaValidator.validate!( Lavigne.schema, hdr )
     end
   end
-
-
 
   def self.save_features(features, filename, other_headers = [])
     file = File.open(filename, 'wb')
