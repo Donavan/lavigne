@@ -8,7 +8,7 @@ record :feature do
   required :description, :string
   required :line, :long
   optional :tags, :array, items: :tag
-  optional :elements, :array, items: :scenario
+  optional :scenarios, :array, items: :scenario
   optional :output, :array, items: :string
   optional :before, :array, items: :hook
   optional :after, :array, items: :hook
