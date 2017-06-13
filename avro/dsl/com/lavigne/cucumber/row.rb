@@ -1,5 +1,7 @@
 namespace 'com.lavigne.cucumber'
 
 record :row do
-  required :cells, :array, items: :string
+  optional :number, :long
+  optional :line, :long
+  required :values, :array, items: :string
 end

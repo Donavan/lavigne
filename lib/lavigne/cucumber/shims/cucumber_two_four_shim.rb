@@ -5,8 +5,8 @@ module Lavigne
     # from one Cucumber version to another
     class Shim < ::Lavigne::Cucumber::BaseShim
       def formatter
-        require 'lavigne/cucumber/formatters/cucumber_two_four_formatter'
-        Lavigne::CucumberTwoFour::Formatter
+        require 'lavigne/cucumber/formatters/model_formatter'
+        ::Lavigne::Cucumber::ModelFormatter
       end
     end
   end

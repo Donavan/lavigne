@@ -4,8 +4,11 @@ record :step do
   required :keyword, :string
   required :name, :string
   required :line, :long
-  required :match, :match_rec
-  required :result, :result_rec
+  required :location, :string
+  required :status, :string
+  required :background, :boolean, default: false
+  optional :error_message, :string
+  optional :duration, :long
   optional :embeddings, :array, items: :embedding
   optional :output, :array, items: :string
   optional :rows, :array, items: :row

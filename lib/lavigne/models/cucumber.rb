@@ -1,6 +1,4 @@
 require 'lavigne/models/cucumber/embedding'
-require 'lavigne/models/cucumber/match_rec'
-require 'lavigne/models/cucumber/result_rec'
 require 'lavigne/models/cucumber/hook'
 require 'lavigne/models/cucumber/row'
 require 'lavigne/models/cucumber/step'

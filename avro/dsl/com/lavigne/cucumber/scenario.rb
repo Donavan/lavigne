@@ -7,10 +7,13 @@ record :scenario do
   required :description, :string
   required :line, :long
   required :type, :string
+  required :status, :string
+  required :steps, :array, items: :step
+  optional :example_row, :row
+  optional :error_message, :string
   optional :tags, :array, items: :tag
   optional :output, :array, items: :string
   optional :before, :array, items: :hook
   optional :after, :array, items: :hook
   optional :around, :array, items: :hook
-  required :steps, :array, items: :step
 end
