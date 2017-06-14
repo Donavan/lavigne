@@ -10,20 +10,35 @@ Currently only supports Cucumber 2.4.
 Even that may not work, there are zero tests currently ¯\_(ツ)_/¯
 
 ## File Schema
-A lavigne result file contains discrete records that are either a header record or a feature.  Header records have a type attribute for categorization with the special *headers_end* header type indicating the end of the headers section.
+Lavigne result files are organized with one or more followed by feature records. The format is designed to be streamed from disk instead of loading it all into memory at once.  The *headers_end* record serves as a marker to easily separate results from metadata about the results.
 
-* file_header - Contains version information for Lavgine, Ruby and Cucumber.
-* run_info - Contains details about the run, and the enviroment
-* kvp - Key value pair headers allow for collection of data by the test developer.
-
-Features each adhere to the schema provided by various Cucumber shims. Theses will be available as distinct schema files later for now you can save the results from 
-```ruby
-Lavigne._instance_for(::Cucumber::VERSION).json_schema
-```
-
-The schema for each Cumber shim is intended to be a compatible with the json formatter output for features.  If you have code that can parse a Cucumber json file you're most of the way to using Lavigne.
-
-See the implementation of Lavigne::ResultFile for details on parsing this format.
+|   __Record__   |     __Field__    | __Type__                                                 | __Required__ | __Notes__                                     |
+|:--------------:|:----------------:|----------------------------------------------------------|--------------|-----------------------------------------------|
+| lavigne_record | rec_type         | enum: feature, file_header, run_info,  kvp,  headers_end |       Y      |                                               |
+|                | data             | union: run_info, file_header, kvp_header, bytes          |       N      |                                               |
+|                |                  |                                                          |              |                                               |
+| file_header    | lavigne_version  | string                                                   |       Y      |                                               |
+|                | ruby_version     | string                                                   |       Y      |                                               |
+|                | cucumber_version | string                                                   |       N      |                                               |
+|                |                  |                                                          |              |                                               |
+| kvp_header     | name             | string                                                   |       Y      |                                               |
+|                | values           | array: kv_pair                                           |       Y      |                                               |
+|                |                  |                                                          |              |                                               |
+| kv_pair        | name             | string                                                   |       Y      |                                               |
+|                | value            | string                                                   |       N      |                                               |
+|                |                  |                                                          |              |                                               |
+| run_info       | run_info_version | long                                                     | Y            |                                               |
+|                | suite_id         | string                                                   | N            |                                               |
+|                | run_id           | string                                                   | Y            |                                               |
+|                | start_time       | long                                                     | Y            | epoch time                                    |
+|                | hostname         | string                                                   | N            |                                               |
+|                | owner_id         | string                                                   | N            |                                               |
+|                | team_id          | string                                                   | N            |                                               |
+|                | project_id       | string                                                   | N            |                                               |
+|                | env              | array: kv_pair                                           | N            |                                               |
+|                |                  |                                                          |              |                                               |
+| feature        |                  |                                                          |              | See: avro/dsl/com/lavigne/cucumber/feature.rb |
+|                |                  |                                                          |              |                                               |
 
 ## Installation
 
