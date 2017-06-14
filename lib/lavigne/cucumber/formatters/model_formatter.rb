@@ -43,6 +43,8 @@ module Lavigne
 
         STDOUT.puts 'on_after_test_case'
         _update_scenario_status(result)
+        builder.current_scenario.update_step_stats
+        builder.current_feature.update_scenario_stats
       end
 
       def on_finished_testing(_event)

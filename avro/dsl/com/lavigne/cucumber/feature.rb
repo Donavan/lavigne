@@ -7,6 +7,9 @@ record :feature do
   required :feature_name, :string
   required :description, :string
   required :line, :long
+  required :passing_scenarios, :long, default: 0
+  required :failing_scenarios, :long, default: 0
+  required :other_scenarios, :long, default: 0
   optional :tags, :array, items: :tag
   optional :scenarios, :array, items: :scenario
   optional :output, :array, items: :string

@@ -9,6 +9,9 @@ record :scenario do
   required :type, :string
   required :status, :string
   required :steps, :array, items: :step
+  required :passing_steps, :long, default: 0
+  required :failing_steps, :long, default: 0
+  required :other_steps, :long, default: 0
   optional :example_row, :row
   optional :error_message, :string
   optional :tags, :array, items: :tag

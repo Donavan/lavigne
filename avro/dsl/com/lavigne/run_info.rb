@@ -1,7 +1,7 @@
 namespace 'com.lavigne'
 record :run_info do
   required :run_info_version, :long
-  required :suite_id, :string
+  optional :suite_id, :string
   required :run_id, :string
   required :start_time, :long
   optional :hostname, :string
