@@ -22,6 +22,7 @@ module Lavigne
         _extract_and_add_tags(cuke_feature, @current_feature)
 
         @current_feature.scenarios << current_scenario unless current_scenario.nil?
+        @current_feature.feature_id = Lavigne.id_provider.feature_id(@current_feature)
       end
 
       def background(background)
@@ -31,13 +32,17 @@ module Lavigne
       def scenario(cuke_scenario)
         STDOUT.puts "FeatureBuilder.scenario #{cuke_scenario.name}"
         _new_scenario(cuke_scenario,_scenario_hash(cuke_scenario))
+        _extract_and_add_tags(cuke_scenario, current_scenario)
+        @current_scenario.scenario_id = Lavigne.id_provider.scenario_id(current_scenario)
       end
 
       def scenario_outline(cuke_scenario)
         STDOUT.puts 'FeatureBuilder.scenario_outline'
         _new_scenario(cuke_scenario,_scenario_outline_hash(cuke_scenario))
+        _extract_and_add_tags(cuke_scenario, current_scenario)
         @current_scenario.tags.concat @examples_table_tags
-        #@current_scenario.example_row = @row
+        @current_scenario.example_row = @row
+        @current_scenario.scenario_id = Lavigne.id_provider.scenario_outline_id(current_scenario, @example_id)
       end
 
       def examples_table(examples_table)
@@ -130,7 +135,6 @@ module Lavigne
       def _feature_hash(cuke_feature)
         {
           uri: cuke_feature.file,
-          feature_id: create_id(cuke_feature),
           keyword: cuke_feature.keyword,
           feature_name: cuke_feature.name,
           description: cuke_feature.description,

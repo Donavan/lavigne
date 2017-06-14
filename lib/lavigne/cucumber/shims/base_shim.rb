@@ -1,11 +1,21 @@
 require 'socket'
-
+require 'lavigne/cucumber/id_provider'
 module Lavigne
   module Cucumber
     # This class is responsible for providing the bits that tend to change
     # from one Cucumber version to another
     class BaseShim
       attr_accessor :run_info, :env_vars
+      attr_writer :id_provider
+
+      def id_provider
+        @id_provider ||= default_id_provider
+      end
+
+
+      def default_id_provider
+        IDProvider.new
+      end
 
       def capture_env(opts = {})
         keys = opts.fetch(:only, ENV.keys) - opts.fetch(:except, [])
