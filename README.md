@@ -40,6 +40,38 @@ Lavigne result files are organized with one or more followed by feature records.
 | feature        |                  |                                                          |              | See: avro/dsl/com/lavigne/cucumber/feature.rb |
 |                |                  |                                                          |              |                                               |
 
+
+## Parsing a result file in Ruby
+```ruby
+# Open the file, read the headers and return
+res_file = Lavigne::ResultFile.new(File.open('results.lav', 'rb'))
+
+# Check the run info
+if res_file.run_info.run_id == 'some.run.id'
+	# Do something
+end
+
+# Work with raw binary feature data one at a time, feature will hold raw avro data
+feature = res_file.next_feature
+
+# Convert that raw data to a model
+feature_model = Models::Cucumber::Feature.avro_raw_decode(value: feature)
+
+
+# Work with expanded feature data one at a time, feature_model will hold a decoded feature
+feature_model = res_file.next_feature_model
+
+# Get all features at once
+raw_features = res_file.features         # For raw
+feature_modesl = res_file.feature_models # For models
+
+# Iterate over features
+res_file.each_feature { |feature| do_something(feature) }        # Raw
+res_file.each_feature_model { |feature| do_something(feature) }  # Models
+```
+
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
