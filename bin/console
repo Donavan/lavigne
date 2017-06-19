@@ -20,10 +20,10 @@ Lavigne.include_run_info('suite_id' => 'SUITE_ID', 'run_id' => 'RUN_ID')
 # Lavigne.save_features(json2, 'json2.avr', test_headers)
 
 in_file = File.open('test.lav', 'rb')
-dr = Lavigne.datafile_reader(in_file)
+#dr = Lavigne.datafile_reader(in_file)
 
 # data = dr.first
-# res_file = Lavigne::ResultFile.new(in_file)
+res_file = Lavigne::ResultFile.new(in_file)
 
 # data = dr.to_a.first
 

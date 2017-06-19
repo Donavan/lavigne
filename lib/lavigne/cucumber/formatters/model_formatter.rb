@@ -79,12 +79,16 @@ module Lavigne
         return if @builder.nil? || @builder.current_feature.nil?
         _write_headers
         begin
+          builder.current_feature.validate!
+        rescue ::ActiveModel::ValidationError => ex
+          binding.pry;2
+        end
+
+        begin
           record = { 'rec_type' => :feature.to_s, 'data' => builder.current_feature.avro_raw_value }
         rescue ::Avro::IO::AvroTypeError => ex
           binding.pry;2
-
-          # This will raise an exception with meaningful output.
-          builder.current_feature.validate!
+          STDERR.puts ex.message
         end
 
         begin

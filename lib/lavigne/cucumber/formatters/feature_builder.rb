@@ -33,7 +33,7 @@ module Lavigne
         STDOUT.puts "FeatureBuilder.scenario #{cuke_scenario.name}"
         _new_scenario(cuke_scenario,_scenario_hash(cuke_scenario))
         _extract_and_add_tags(cuke_scenario, current_scenario)
-        @current_scenario.scenario_id = Lavigne.id_provider.scenario_id(current_scenario)
+        @current_scenario.test_case_id = Lavigne.id_provider.scenario_id(current_scenario)
       end
 
       def scenario_outline(cuke_scenario)
@@ -42,7 +42,7 @@ module Lavigne
         _extract_and_add_tags(cuke_scenario, current_scenario)
         @current_scenario.tags.concat @examples_table_tags
         @current_scenario.example_row = @row
-        @current_scenario.scenario_id = Lavigne.id_provider.scenario_outline_id(current_scenario, @example_id)
+        @current_scenario.test_case_id = Lavigne.id_provider.scenario_outline_id(current_scenario, @example_id)
       end
 
       def examples_table(examples_table)
@@ -56,7 +56,7 @@ module Lavigne
 
       def create_tags_array(tags)
         tags_array = []
-        tags.each { |cuke_tag| tags_array << ::Lavigne::Models::Cucumber::Tag.new(tag_name: cuke_tag.name, line: cuke_tag.location.line) }
+        tags.each { |cuke_tag| tags_array << ::Lavigne::Models::Tag.new(tag_name: cuke_tag.name, line: cuke_tag.location.line) }
         tags_array
       end
 
@@ -144,30 +144,32 @@ module Lavigne
 
       def _extract_and_add_tags(element, target)
         element.tags.each do |cuke_tag|
-          target.tags << ::Lavigne::Models::Cucumber::Tag.new(tag_name: cuke_tag.name, line: cuke_tag.location.line)
+          target.tags << ::Lavigne::Models::Tag.new(tag_name: cuke_tag.name, line: cuke_tag.location.line)
         end
       end
 
       def _scenario_hash(cuke_scenario)
         {
-          scenario_id: create_id(cuke_scenario),
+          test_case_id: create_id(cuke_scenario),
           line: cuke_scenario.location.line,
+          scenario_type: 'scenario'
         }.merge(_scenario_common_hash(cuke_scenario))
       end
 
       def _scenario_outline_hash(cuke_scenario)
         {
-          scenario_id: create_id(cuke_scenario) + ';' + @example_id,
-          line: @row.line
+          test_case_id: create_id(cuke_scenario) + ';' + @example_id,
+          line: @row.line,
+          scenario_type: 'scenario_outline'
         }.merge(_scenario_common_hash(cuke_scenario))
       end
 
       def _scenario_common_hash(cuke_scenario)
         {
           keyword: cuke_scenario.keyword,
-          scenario_name: cuke_scenario.name,
+          name: cuke_scenario.name,
           description: cuke_scenario.description,
-          type: 'scenario'
+          test_case_type: 'cucumber'
         }
       end
 
@@ -178,7 +180,7 @@ module Lavigne
             keyword: step_source.keyword,
             name: step_source.name,
             line: step_source.location.line,
-            background: test_step.source[1].name != current_scenario.scenario_name
+            background: test_step.source[1].name != current_scenario.name
         }
         step_hash[:rows] = _rows_from_data_table(step_source.multiline_arg) if step_source.multiline_arg.data_table?
         step_hash

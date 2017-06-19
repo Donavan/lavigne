@@ -6,7 +6,7 @@ module Lavigne
       end
 
       def scenario_id(scenario)
-        scenario.scenario_name.downcase.tr(' ', '-')
+        scenario.name.downcase.tr(' ', '-')
       end
 
       def scenario_outline_id(scenario, example_id)

@@ -63,7 +63,7 @@ feature_model = res_file.next_feature_model
 
 # Get all features at once
 raw_features = res_file.features         # For raw
-feature_modesl = res_file.feature_models # For models
+feature_models = res_file.feature_models # For models
 
 # Iterate over features
 res_file.each_feature { |feature| do_something(feature) }        # Raw

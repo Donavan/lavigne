@@ -29,6 +29,8 @@ require 'lavigne/models/kvp_header'
 require 'lavigne/models/run_info'
 require 'lavigne/models/lavigne_file_header'
 require 'lavigne/models/lavigne_header'
+require 'lavigne/models/tag'
+require 'lavigne/models/test_case'
 
 # Cucumber must be included before the record
 require 'lavigne/models/cucumber'
