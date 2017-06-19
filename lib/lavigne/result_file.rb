@@ -1,6 +1,6 @@
 module Lavigne
   class ResultFile
-    attr_reader :reader, :file_header, :run_info, :other_headers
+    attr_reader :reader, :version_info, :run_info, :other_headers
 
     def initialize(file)
       @other_headers = {}
@@ -44,8 +44,9 @@ module Lavigne
 
     private
 
-    def _file_header(rec)
-      @file_header = Models::FileHeader.new(rec)
+    def _version_info_header(rec)
+      @version_info = {}
+      rec['versions'].each { |vi| @version_info[vi['component']] = @version_info[vi['version']] }
     end
 
     def _run_info(rec)
@@ -63,17 +64,6 @@ module Lavigne
       until _eoh?(rec)
         self.send("_#{rec['rec_type']}", rec['data'])
         rec = reader.first
-      end
-    end
-
-    def _handle_header(header)
-      case header['type']
-      when 'run_info'
-        @run_info = header['header']
-      when 'file_header'
-        @file_header = header['header']
-      when 'kvp'
-        @other_headers[header['header']['name']] = header['header']['values']
       end
     end
 

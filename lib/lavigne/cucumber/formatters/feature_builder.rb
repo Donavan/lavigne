@@ -15,60 +15,41 @@ module Lavigne
       # Called in add_test_case via test_case.describe_source_to
       def feature(cuke_feature)
         return if same_feature?(cuke_feature)
-        STDOUT.puts 'FeatureBuilder.feature'
+        STDOUT.puts 'FeatureBuilder.feature' unless ENV['LAVIGNE_TRACE'].nil?
 
         @current_feature = ::Lavigne::Models::Cucumber::Feature.new(_feature_hash(cuke_feature))
-
-        _extract_and_add_tags(cuke_feature, @current_feature)
-
         @current_feature.scenarios << current_scenario unless current_scenario.nil?
-        @current_feature.feature_id = Lavigne.id_provider.feature_id(@current_feature)
+        @current_feature.context_id = Lavigne.id_provider.feature_id(@current_feature)
       end
 
       def background(background)
-        STDOUT.puts "FeatureBuilder.background #{background.name}"
+        STDOUT.puts "FeatureBuilder.background #{background.name}" unless ENV['LAVIGNE_TRACE'].nil?
       end
 
       def scenario(cuke_scenario)
-        STDOUT.puts "FeatureBuilder.scenario #{cuke_scenario.name}"
-        _new_scenario(cuke_scenario,_scenario_hash(cuke_scenario))
-        _extract_and_add_tags(cuke_scenario, current_scenario)
+        STDOUT.puts "FeatureBuilder.scenario #{cuke_scenario.name}" unless ENV['LAVIGNE_TRACE'].nil?
+        _new_scenario(_scenario_hash(cuke_scenario))
         @current_scenario.test_case_id = Lavigne.id_provider.scenario_id(current_scenario)
       end
 
       def scenario_outline(cuke_scenario)
-        STDOUT.puts 'FeatureBuilder.scenario_outline'
-        _new_scenario(cuke_scenario,_scenario_outline_hash(cuke_scenario))
-        _extract_and_add_tags(cuke_scenario, current_scenario)
+        STDOUT.puts 'FeatureBuilder.scenario_outline' unless ENV['LAVIGNE_TRACE'].nil?
+        _new_scenario(_scenario_outline_hash(cuke_scenario))
         @current_scenario.tags.concat @examples_table_tags
         @current_scenario.example_row = @row
         @current_scenario.test_case_id = Lavigne.id_provider.scenario_outline_id(current_scenario, @example_id)
       end
 
       def examples_table(examples_table)
-        STDOUT.puts 'FeatureBuilder.examples_table'
-        #binding.pry
-        # the json file have traditionally used the header row as row 1,
-        # wheras cucumber-ruby-core used the first example row as row 1.
-        @example_id = create_id(examples_table) + ";#{@row.number + 1}"
-        @examples_table_tags = create_tags_array(examples_table.tags)
-      end
-
-      def create_tags_array(tags)
-        tags_array = []
-        tags.each { |cuke_tag| tags_array << ::Lavigne::Models::Tag.new(tag_name: cuke_tag.name, line: cuke_tag.location.line) }
-        tags_array
+        STDOUT.puts 'FeatureBuilder.examples_table' unless ENV['LAVIGNE_TRACE'].nil?
+        @example_id = Lavigne.id_provider.example_id(examples_table, @row)
+        @examples_table_tags = examples_table.tags.map { |tag| tag.name }
       end
 
       def examples_table_row(row)
-        STDOUT.puts 'FeatureBuilder.examples_table_row'
-        #binding.pry;2
+        STDOUT.puts 'FeatureBuilder.examples_table_row' unless ENV['LAVIGNE_TRACE'].nil?
         @row = ::Lavigne::Models::Cucumber::Row.new({line: row.line, number: row.number, values: row.values.dup})
         @row.validate!
-      end
-
-      def create_id(element)
-        element.name.downcase.tr(' ', '-')
       end
 
       def before_step(test_step)
@@ -124,11 +105,8 @@ module Lavigne
         target.send(hook_query.type) << hook
       end
 
-      def _new_scenario(cuke_scenario, scenario_hash)
+      def _new_scenario(scenario_hash)
         @current_scenario = ::Lavigne::Models::Cucumber::Scenario.new(scenario_hash)
-
-        _extract_and_add_tags(cuke_scenario, @current_scenario)
-
         current_feature.scenarios << @current_scenario unless current_feature.nil?
       end
 
@@ -136,21 +114,16 @@ module Lavigne
         {
           uri: cuke_feature.file,
           keyword: cuke_feature.keyword,
-          feature_name: cuke_feature.name,
+          name: cuke_feature.name,
           description: cuke_feature.description,
-          line: cuke_feature.location.line
+          line: cuke_feature.location.line,
+          tags: cuke_feature.tags.map { |tag| tag.name }
         }
-      end
-
-      def _extract_and_add_tags(element, target)
-        element.tags.each do |cuke_tag|
-          target.tags << ::Lavigne::Models::Tag.new(tag_name: cuke_tag.name, line: cuke_tag.location.line)
-        end
       end
 
       def _scenario_hash(cuke_scenario)
         {
-          test_case_id: create_id(cuke_scenario),
+          #test_case_id: create_id(cuke_scenario),
           line: cuke_scenario.location.line,
           scenario_type: 'scenario'
         }.merge(_scenario_common_hash(cuke_scenario))
@@ -158,7 +131,7 @@ module Lavigne
 
       def _scenario_outline_hash(cuke_scenario)
         {
-          test_case_id: create_id(cuke_scenario) + ';' + @example_id,
+          #test_case_id: create_id(cuke_scenario) + ';' + @example_id,
           line: @row.line,
           scenario_type: 'scenario_outline'
         }.merge(_scenario_common_hash(cuke_scenario))
@@ -169,7 +142,8 @@ module Lavigne
           keyword: cuke_scenario.keyword,
           name: cuke_scenario.name,
           description: cuke_scenario.description,
-          test_case_type: 'cucumber'
+          test_case_type: 'cucumber',
+          tags: cuke_scenario.tags.map { |tag| tag.name }
         }
       end
 

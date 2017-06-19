@@ -17,6 +17,8 @@ module Lavigne
       instance.send(meth, *args)
     end
 
+
+    # TODO: Revisit these for multi framework support
     def instance
       @instance ||= _instance_for(::Cucumber::VERSION)
     end
@@ -68,28 +70,22 @@ module Lavigne
     features.each { |feature| writer << { 'feature' => feature } }
   end
 
-  CURRENT_HEADER_INFO = {
-    'lavigne_version' => ::Lavigne::VERSION,
-    'ruby_version' => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}".freeze,
-    'cucumber_version' => ::Cucumber::VERSION.chomp
-  }.freeze
-
   def self.write_headers(writer, other_headers = [])
-    write_header writer, :file_header, CURRENT_HEADER_INFO
+
+    write_header writer, :version_info_header, version_info_header
     write_header writer, :run_info, Lavigne.run_info unless Lavigne.run_info.nil?
     other_headers.each { |header| write_header writer, :kvp, header }
     write_header writer, :headers_end, nil
   end
 
+  def self.version_info_header
+    { 'versions' => Lavigne.version_info.map{ |k, v| { 'component' => k, 'version' => v.to_s } } }
+  end
+
   def self.write_header(writer, rec_type, header)
     hdr = { 'rec_type' => rec_type.to_s, 'data' => header }
-    begin
-      writer << hdr
-    rescue
-      # TODO: Scope this
-      # This will raise an exception with meaningful output.
-      Avro::SchemaValidator.validate!(Lavigne.schema, hdr)
-    end
+    Avro::SchemaValidator.validate!(Lavigne.schema, hdr)
+    writer << hdr
   end
 
   def self.save_features(features, filename, other_headers = [])

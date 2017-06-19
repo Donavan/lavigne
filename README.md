@@ -12,33 +12,34 @@ Even that may not work, there are zero tests currently ¯\_(ツ)_/¯
 ## File Schema
 Lavigne result files are organized with one or more followed by feature records. The format is designed to be streamed from disk instead of loading it all into memory at once.  The *headers_end* record serves as a marker to easily separate results from metadata about the results.
 
-|   __Record__   |     __Field__    | __Type__                                                 | __Required__ | __Notes__                                     |
-|:--------------:|:----------------:|----------------------------------------------------------|--------------|-----------------------------------------------|
-| lavigne_record | rec_type         | enum: feature, file_header, run_info,  kvp,  headers_end |       Y      |                                               |
-|                | data             | union: run_info, file_header, kvp_header, bytes          |       N      |                                               |
-|                |                  |                                                          |              |                                               |
-| file_header    | lavigne_version  | string                                                   |       Y      |                                               |
-|                | ruby_version     | string                                                   |       Y      |                                               |
-|                | cucumber_version | string                                                   |       N      |                                               |
-|                |                  |                                                          |              |                                               |
-| kvp_header     | name             | string                                                   |       Y      |                                               |
-|                | values           | array: kv_pair                                           |       Y      |                                               |
-|                |                  |                                                          |              |                                               |
-| kv_pair        | name             | string                                                   |       Y      |                                               |
-|                | value            | string                                                   |       N      |                                               |
-|                |                  |                                                          |              |                                               |
-| run_info       | run_info_version | long                                                     | Y            |                                               |
-|                | suite_id         | string                                                   | N            |                                               |
-|                | run_id           | string                                                   | Y            |                                               |
-|                | start_time       | long                                                     | Y            | epoch time                                    |
-|                | hostname         | string                                                   | N            |                                               |
-|                | owner_id         | string                                                   | N            |                                               |
-|                | team_id          | string                                                   | N            |                                               |
-|                | project_id       | string                                                   | N            |                                               |
-|                | env              | array: kv_pair                                           | N            |                                               |
-|                |                  |                                                          |              |                                               |
-| feature        |                  |                                                          |              | See: avro/dsl/com/lavigne/cucumber/feature.rb |
-|                |                  |                                                          |              |                                               |
+|      __Record__     |     __Field__    | __Type__                                                 | __Required__ | __Notes__                                     |
+|:-------------------:|:----------------:|----------------------------------------------------------|--------------|-----------------------------------------------|
+| lavigne_record      | rec_type         | enum: feature, file_header, run_info,  kvp,  headers_end |       Y      |                                               |
+|                     | data             | union: run_info, file_header, kvp_header, bytes          |       N      |                                               |
+|                     |                  |                                                          |              |                                               |
+| version_info_header | versions         | array: version_info                                      |       Y      |                                               |
+|                     |                  |                                                          |              |                                               |
+| version_info        | component        | string                                                   |       Y      |                                               |
+|                     | version          | string                                                   |       Y      |                                               |
+|                     |                  |                                                          |              |                                               |
+| kvp_header          | name             | string                                                   |       Y      |                                               |
+|                     | values           | array: kv_pair                                           |       Y      |                                               |
+|                     |                  |                                                          |              |                                               |
+| kv_pair             | name             | string                                                   |       Y      |                                               |
+|                     | value            | string                                                   |       N      |                                               |
+|                     |                  |                                                          |              |                                               |
+| run_info            | run_info_version | long                                                     | Y            |                                               |
+|                     | suite_id         | string                                                   | N            |                                               |
+|                     | run_id           | string                                                   | Y            |                                               |
+|                     | start_time       | long                                                     | Y            | epoch time                                    |
+|                     | hostname         | string                                                   | N            |                                               |
+|                     | owner_id         | string                                                   | N            |                                               |
+|                     | team_id          | string                                                   | N            |                                               |
+|                     | project_id       | string                                                   | N            |                                               |
+|                     | env              | array: kv_pair                                           | N            |                                               |
+|                     |                  |                                                          |              |                                               |
+| feature             |                  |                                                          |              | See: avro/dsl/com/lavigne/cucumber/feature.rb |
+|                     |                  |                                                          |              |                                               |
 
 
 ## Parsing a result file in Ruby

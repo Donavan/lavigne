@@ -20,7 +20,7 @@ module Lavigne
       end
 
       def on_before_test_case(event)
-        STDOUT.puts 'on_before_test_case'
+        STDOUT.puts 'on_before_test_case' unless ENV['LAVIGNE_TRACE'].nil?
         test_case = event.test_case
 
         _write_feature unless builder.nil? || builder.same_feature?(test_case.feature)
@@ -38,10 +38,9 @@ module Lavigne
       end
 
       def on_after_test_case(event)
+        STDOUT.puts 'on_after_test_case' unless ENV['LAVIGNE_TRACE'].nil?
         result = event.result.with_filtered_backtrace(::Cucumber::Formatter::BacktraceFilter)
-        #add_failed_around_hook(result) if result.failed? && !@any_step_failed
 
-        STDOUT.puts 'on_after_test_case'
         _update_scenario_status(result)
         builder.current_scenario.update_step_stats
         builder.current_feature.update_scenario_stats

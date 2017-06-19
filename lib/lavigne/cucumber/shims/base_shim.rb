@@ -12,6 +12,13 @@ module Lavigne
         @id_provider ||= default_id_provider
       end
 
+      def version_info
+        @version_info ||= { 'lavigne_gem' => ::Lavigne::VERSION,
+                            'ruby' => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}".freeze,
+                            'cucumber' => ::Cucumber::VERSION.chomp
+        }
+      end
+
 
       def default_id_provider
         IDProvider.new
